@@ -104,13 +104,13 @@ export default function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative w-full py-12 md:py-24 lg:py-32 flex items-center justify-center overflow-visible"
+      className="relative w-full py-16 md:py-24 lg:py-32 flex items-center justify-center overflow-x-clip"
     >
-      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Left Side: Copywriting Content */}
         <div
           ref={textContentRef}
-          className="lg:col-span-7 flex flex-col items-start text-left"
+          className="lg:col-span-7 flex flex-col items-start text-left order-2 lg:order-1 px-2 sm:px-4 lg:px-0"
         >
           {/* Badge */}
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 border border-zinc-200/50 text-zinc-700 text-xs font-bold uppercase tracking-wider mb-6">
@@ -119,7 +119,7 @@ export default function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-5xl md:text-7xl font-black text-zinc-950 tracking-tight leading-[1.05]">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-zinc-950 tracking-tight leading-[1.05] w-full">
             Hi, I'm <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-[#ff0055] to-[#232c66]">
               Hridoy Islam Himel
@@ -127,27 +127,27 @@ export default function Hero() {
           </h1>
 
           {/* Key Roles Tagline */}
-          <p className="text-xl md:text-2xl font-bold text-zinc-800 mt-6 max-w-2xl leading-relaxed">
+          <p className="text-lg sm:text-xl lg:text-2xl font-bold text-zinc-800 mt-6 max-w-2xl leading-relaxed">
             Crafting high-impact 3D animations, custom motion designs, and video content that elevates digital brands.
           </p>
 
           {/* Short Bio */}
-          <p className="text-zinc-500 text-base md:text-lg mt-4 max-w-xl leading-relaxed font-medium">
+          <p className="text-zinc-500 text-sm sm:text-base lg:text-lg mt-4 max-w-xl leading-relaxed font-medium">
             Specializing in Blender, After Effects, and Premiere Pro. I transform complex concepts into visually breathtaking animations, dynamic kinetic typography, and premium social media content.
           </p>
 
           {/* Action Call to Actions */}
-          <div className="flex flex-wrap gap-4 mt-8 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
             <Link
               href="#projects"
-              className="px-8 py-4 bg-zinc-950 text-white rounded-full font-bold flex items-center gap-2 hover:bg-zinc-800 transition-all shadow-md group text-sm md:text-base"
+              className="px-8 py-4 bg-zinc-950 text-white rounded-full font-bold flex items-center justify-center gap-2 hover:bg-zinc-800 transition-all shadow-md group text-sm md:text-base"
             >
               View My Work
               <Play size={16} className="fill-white text-white group-hover:scale-110 transition-transform" />
             </Link>
             <Link
               href="#contact"
-              className="px-8 py-4 border-2 border-zinc-900 text-zinc-950 rounded-full font-bold flex items-center gap-2 hover:bg-zinc-50 transition-all text-sm md:text-base"
+              className="px-8 py-4 border-2 border-zinc-900 text-zinc-950 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-zinc-50 transition-all text-sm md:text-base"
             >
               Let's Collaborate
               <MoveRight size={16} />
@@ -178,12 +178,12 @@ export default function Hero() {
         </div>
 
         {/* Right Side: High-Fidelity Creative Showcase (Image & Floating Badges) */}
-        <div className="lg:col-span-5 relative flex items-center justify-center pt-8 lg:pt-0">
+        <div className="lg:col-span-5 relative flex items-center justify-center pt-8 pb-12 lg:py-0 order-1 lg:order-2 w-full">
           
           {/* Main Card Frame */}
           <div
             ref={imageWrapperRef}
-            className="relative w-full max-w-[340px] md:max-w-[380px] aspect-[4/5] rounded-[32px] bg-white border border-zinc-200/60 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-visible"
+            className="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[360px] aspect-[4/5] rounded-[32px] bg-white border border-zinc-200/60 p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-visible"
           >
             {/* Inner Image Container */}
             <div className="relative w-full h-full rounded-[24px] overflow-hidden bg-zinc-50 border border-zinc-100">
@@ -199,37 +199,37 @@ export default function Hero() {
             {/* Floating Badge 1: Blender */}
             <div
               ref={tag1Ref}
-              className="absolute -top-4 -left-6 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-md border border-zinc-200/80 px-4 py-2 rounded-full shadow-lg"
+              className="absolute -top-3 -left-3 sm:-top-4 sm:-left-6 z-20 flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur-md border border-zinc-200/80 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-lg"
             >
-              <Box size={14} className="text-orange-500" />
-              <span className="text-xs font-extrabold text-zinc-800">Blender 3D</span>
+              <Box size={12} className="text-orange-500 sm:w-[14px] sm:h-[14px]" />
+              <span className="text-[10px] sm:text-xs font-extrabold text-zinc-800">Blender 3D</span>
             </div>
 
             {/* Floating Badge 2: After Effects */}
             <div
               ref={tag2Ref}
-              className="absolute top-1/4 -right-10 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-md border border-zinc-200/80 px-4 py-2 rounded-full shadow-lg"
+              className="absolute top-1/4 -right-3 sm:-right-8 z-20 flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur-md border border-zinc-200/80 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-lg"
             >
-              <Film size={14} className="text-purple-500" />
-              <span className="text-xs font-extrabold text-zinc-800">After Effects</span>
+              <Film size={12} className="text-purple-500 sm:w-[14px] sm:h-[14px]" />
+              <span className="text-[10px] sm:text-xs font-extrabold text-zinc-800">After Effects</span>
             </div>
 
             {/* Floating Badge 3: 3D Motion */}
             <div
               ref={tag3Ref}
-              className="absolute bottom-1/4 -left-12 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-md border border-zinc-200/80 px-4 py-2 rounded-full shadow-lg"
+              className="absolute bottom-1/4 -left-4 sm:-left-10 z-20 flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur-md border border-zinc-200/80 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-lg"
             >
-              <Sparkles size={14} className="text-pink-500" />
-              <span className="text-xs font-extrabold text-zinc-800">3D Motion</span>
+              <Sparkles size={12} className="text-pink-500 sm:w-[14px] sm:h-[14px]" />
+              <span className="text-[10px] sm:text-xs font-extrabold text-zinc-800">3D Motion</span>
             </div>
 
             {/* Floating Badge 4: Creator */}
             <div
               ref={tag4Ref}
-              className="absolute -bottom-4 -right-4 z-20 flex items-center gap-2 bg-white/90 backdrop-blur-md border border-zinc-200/80 px-4 py-2 rounded-full shadow-lg"
+              className="absolute -bottom-3 -right-2 sm:-bottom-4 sm:-right-4 z-20 flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur-md border border-zinc-200/80 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-lg"
             >
-              <Youtube size={14} className="text-red-500" />
-              <span className="text-xs font-extrabold text-zinc-800">Content Creator</span>
+              <Youtube size={12} className="text-red-500 sm:w-[14px] sm:h-[14px]" />
+              <span className="text-[10px] sm:text-xs font-extrabold text-zinc-800">Content Creator</span>
             </div>
           </div>
         </div>
