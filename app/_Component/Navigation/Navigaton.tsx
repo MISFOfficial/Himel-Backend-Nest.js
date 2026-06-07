@@ -1,67 +1,36 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React, { useState, useEffect, useRef } from "react";
 import {
-  Home,
-  Briefcase,
-  Zap,
-  Award,
-  HelpCircle,
+  Youtube,
+  Instagram,
+  Linkedin,
   Mail,
-  FileText,
-  MoreHorizontal,
-  ChevronDown,
+  Menu,
+  X,
+  ArrowRight,
 } from "lucide-react";
-import logo from "@/public/muksitul-logo-2.png";
 import { useRouter, usePathname } from "next/navigation";
+import gsap from "gsap";
 
 export default function Navigaton() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const linksContainerRef = useRef<HTMLDivElement>(null);
 
   const navLinks = [
-    { name: "Home", id: "hero", icon: <Home size={20} /> },
-    {
-      name: "Projects",
-      id: "projects",
-      icon: <Briefcase size={20} />,
-      subLinks: [
-        { name: "Engineering", id: "projects" },
-        { name: "Design", id: "designs" },
-        { name: "CMS", id: "cms-projects" },
-      ],
-    },
-    { name: "Services", id: "services", icon: <Zap size={20} /> },
-    {
-      name: "Certificates",
-      id: "certificates-list",
-      href: "/certificates",
-      icon: <Award size={20} />,
-    },
-    { name: "Faq", id: "faq", icon: <HelpCircle size={20} /> },
-    { name: "Contact", id: "contact", icon: <Mail size={20} /> },
-    {
-      name: "Resume",
-      id: "resume",
-      href: "/resume",
-      icon: <FileText size={20} />,
-    },
+    { name: "Home", id: "hero" },
+    { name: "Works", id: "projects" },
+    { name: "Services", id: "services" },
+    { name: "Faq", id: "faq" },
+    { name: "Contact", id: "contact" },
   ];
 
-  const visibleLinks = navLinks.slice(0, 4);
-  const moreLinks = navLinks.slice(4);
-
-  const handleNavClick = (id: string, href?: string) => {
-    if (href) {
-      router.push(href);
-      closeMenu();
-      return;
-    }
+  const handleNavClick = (id: string) => {
     const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
     const scrollBlock = id === "hero" && isMobile ? "start" : "center";
     if (pathname !== "/") {
@@ -82,6 +51,8 @@ export default function Navigaton() {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     handleScroll();
+    
+    // Handle initial hash link scroll
     if (typeof window !== "undefined" && window.location.hash) {
       const id = window.location.hash.replace("#", "");
       const element = document.getElementById(id);
@@ -96,162 +67,167 @@ export default function Navigaton() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathname]);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const closeMenu = () => setIsMenuOpen(false);
+  const toggleMenu = () => {
+    if (isMenuOpen) {
+      closeMenu();
+    } else {
+      setIsMenuOpen(true);
+      // Animate slide-in side drawer and staggered links
+      setTimeout(() => {
+        gsap.to(backdropRef.current, {
+          opacity: 1,
+          duration: 0.3,
+        });
+        gsap.to(drawerRef.current, {
+          x: 0,
+          duration: 0.5,
+          ease: "power4.out",
+        });
+        if (linksContainerRef.current) {
+          gsap.fromTo(
+            linksContainerRef.current.children,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              stagger: 0.08,
+              duration: 0.4,
+              ease: "power3.out",
+              delay: 0.15,
+            }
+          );
+        }
+      }, 50);
+    }
+  };
+
+  const closeMenu = () => {
+    // Animate slide-out
+    gsap.to(drawerRef.current, {
+      x: "100%",
+      duration: 0.4,
+      ease: "power4.in",
+      onComplete: () => setIsMenuOpen(false),
+    });
+    gsap.to(backdropRef.current, {
+      opacity: 0,
+      duration: 0.3,
+    });
+  };
 
   return (
     <>
-      {/* Top Nav - Desktop Only */}
+      {/* Minimalist Top Header (Logo + Hamburger only) */}
       <nav
-        className={`fixed hidden lg:block top-0 py-4 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 py-5 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-white/80 backdrop-blur-xl border-b border-zinc-200/50 shadow-sm"
+            ? "bg-white/80 backdrop-blur-xl border-b border-zinc-200/40 shadow-sm"
             : "bg-transparent"
         }`}
       >
         <div className="ratio flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <button onClick={() => handleNavClick("hero")} className="hover:scale-105 transition-transform">
-              <Image src={logo} alt="Profile" width={80} height={80} className="w-14" />
-            </button>
-          </div>
-          <div className="flex gap-2 items-center">
-            {navLinks.map((link) => (
-              <div
-                key={link.name}
-                className="relative group"
-                onMouseEnter={() => link.subLinks && setIsProjectsDropdownOpen(true)}
-                onMouseLeave={() => link.subLinks && setIsProjectsDropdownOpen(false)}
-              >
-                <button
-                  onClick={() => !link.subLinks && handleNavClick(link.id, link.href)}
-                  className={`px-5 py-2.5 text-xs cursor-pointer font-black uppercase tracking-widest transition-all primary-rounded hover:scale-105 flex items-center gap-1 ${
-                    link.name === "Resume"
-                      ? "primary-color2 mx-4 text-white"
-                      : "text-zinc-700 hover:text-zinc-950"
-                  }`}
-                >
-                  {link.name}
-                  {link.subLinks && (
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-300 ${isProjectsDropdownOpen ? "rotate-180" : ""}`}
-                    />
-                  )}
-                </button>
-                {link.subLinks && isProjectsDropdownOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-48 z-50">
-                    <div className="bg-white/95 backdrop-blur-xl border border-zinc-200/60 rounded-xl overflow-hidden shadow-2xl p-2">
-                      {link.subLinks.map((sub) => (
-                        <button
-                          key={sub.id}
-                          onClick={() => { handleNavClick(sub.id); setIsProjectsDropdownOpen(false); }}
-                          className="w-full text-left px-4 py-3 text-[10px] font-black uppercase tracking-widest text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50 rounded-lg transition-all"
-                        >
-                          {sub.name}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </nav>
-
-      {/* Bottom Tab Navigation - Mobile Only */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-3xl border-t border-zinc-200/50 pb-[env(safe-area-inset-bottom)] shadow-lg">
-        {isProjectsDropdownOpen && (
-          <>
-            <div
-              onClick={() => setIsProjectsDropdownOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm -z-10"
-            />
-            <div className="absolute bottom-full left-4 right-4 mb-4 bg-white/95 backdrop-blur-3xl border border-zinc-200/60 rounded-2xl overflow-hidden shadow-2xl">
-              <div className="p-1 grid grid-cols-1">
-                <div className="px-6 py-3 border-b border-zinc-100">
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Project Categories</span>
-                </div>
-                {navLinks.find((l) => l.name === "Projects")?.subLinks?.map((sub) => (
-                  <button
-                    key={sub.id}
-                    onClick={() => { handleNavClick(sub.id); setIsProjectsDropdownOpen(false); }}
-                    className="flex items-center gap-4 px-6 py-4 hover:bg-zinc-50 transition-colors text-left border-b border-zinc-100 last:border-none"
-                  >
-                    <span className="text-xs font-bold uppercase tracking-widest text-zinc-800">{sub.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </>
-        )}
-
-        {isMenuOpen && (
-          <>
-            <div onClick={closeMenu} className="fixed inset-0 bg-black/60 backdrop-blur-sm -z-10" />
-            <div className="absolute bottom-full left-4 right-4 mb-4 bg-white/95 backdrop-blur-3xl border border-zinc-200/60 rounded-2xl overflow-hidden shadow-2xl">
-              <div className="p-1 grid grid-cols-1">
-                {moreLinks.map((link) => (
-                  <button
-                    key={link.name}
-                    onClick={() => handleNavClick(link.id, link.href)}
-                    className="flex items-center gap-4 px-6 py-4 hover:bg-zinc-50 transition-colors text-left border-b border-zinc-100 last:border-none"
-                  >
-                    <div className="primary-text2">{link.icon}</div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-zinc-800">{link.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </>
-        )}
-
-        <div className="flex items-center justify-around py-3 px-2 max-w-md mx-auto">
-          {visibleLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => {
-                if (link.subLinks) {
-                  setIsProjectsDropdownOpen(!isProjectsDropdownOpen);
-                  setIsMenuOpen(false);
-                } else {
-                  handleNavClick(link.id, link.href);
-                }
-              }}
-              className={`flex flex-col items-center gap-1.5 w-full transition-colors ${
-                (link.subLinks && isProjectsDropdownOpen) || (!link.subLinks && pathname === link.href)
-                  ? "primary-text2"
-                  : "text-zinc-500 hover:text-zinc-950"
-              }`}
-            >
-              <div className="relative flex items-center justify-center p-1.5 rounded-xl transition-all">
-                <div className="relative">
-                  {link.icon}
-                  {link.subLinks && (
-                    <div className="absolute -right-1.5 -bottom-0.5 primary-color2 rounded-full p-0.5 shadow-sm">
-                      <ChevronDown
-                        size={8}
-                        className={`text-white transition-transform duration-300 ${isProjectsDropdownOpen ? "rotate-180" : ""}`}
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-              <span className="text-[10px] font-black uppercase">{link.name}</span>
-            </button>
-          ))}
+          {/* Logo */}
           <button
-            onClick={() => { toggleMenu(); setIsProjectsDropdownOpen(false); }}
-            className={`flex flex-col items-center gap-1.5 w-full transition-colors ${isMenuOpen ? "primary-text2" : "text-zinc-500"}`}
+            onClick={() => handleNavClick("hero")}
+            className="hover:scale-105 transition-transform text-2xl font-black tracking-tighter text-zinc-950 uppercase"
           >
-            <div className="relative flex items-center justify-center p-1.5 rounded-xl transition-all">
-              <MoreHorizontal size={20} />
-            </div>
-            <span className="text-[10px] font-black uppercase">More</span>
+            Himel<span className="text-pink-500 font-extrabold">.</span>
+          </button>
+
+          {/* Elegant Round Hamburger Button (Visible on both desktop & mobile) */}
+          <button
+            onClick={toggleMenu}
+            className="w-12 h-12 rounded-full border border-zinc-200 hover:border-zinc-900 bg-white/50 backdrop-blur-md flex items-center justify-center text-zinc-800 hover:text-zinc-950 focus:outline-none transition-all hover:scale-105 shadow-xs cursor-pointer group"
+            aria-label="Open menu"
+          >
+            <Menu size={20} className="group-hover:rotate-6 transition-transform" />
           </button>
         </div>
       </nav>
+
+      {/* Side Sliding Drawer (Slider Menu) - Universal */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50">
+          {/* Backdrop Overlay */}
+          <div
+            ref={backdropRef}
+            onClick={closeMenu}
+            className="fixed inset-0 bg-zinc-950/40 backdrop-blur-xs opacity-0 transition-opacity"
+          />
+
+          {/* Sliding Side Drawer */}
+          <div
+            ref={drawerRef}
+            className="fixed top-0 right-0 bottom-0 w-full sm:w-[450px] bg-white border-l border-zinc-100 shadow-2xl p-8 sm:p-12 flex flex-col justify-between z-50 transform translate-x-full"
+          >
+            {/* Top Bar of Drawer */}
+            <div className="flex items-center justify-between">
+              <span className="text-xl font-black tracking-tighter text-zinc-950 uppercase">
+                Himel<span className="text-pink-500">.</span>
+              </span>
+              <button
+                onClick={closeMenu}
+                className="w-10 h-10 rounded-full border border-zinc-200 hover:border-zinc-900 flex items-center justify-center text-zinc-500 hover:text-zinc-900 transition-all hover:scale-105 cursor-pointer"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Vertical Navigation Links */}
+            <div
+              ref={linksContainerRef}
+              className="flex flex-col gap-6 my-auto pt-8"
+            >
+              {navLinks.map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => handleNavClick(link.id)}
+                  className="group flex items-center justify-between w-full text-left py-2 font-black text-4xl sm:text-5xl text-zinc-900 hover:text-pink-500 transition-colors uppercase tracking-tight cursor-pointer"
+                >
+                  <span>{link.name}</span>
+                  <ArrowRight
+                    size={28}
+                    className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-pink-500"
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* Footer inside Drawer (Socials & Contact) */}
+            <div className="border-t border-zinc-100 pt-8 flex flex-col gap-4">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">
+                  Say Hello
+                </p>
+                <a
+                  href="mailto:hridoyislamhimel@gmail.com"
+                  className="text-sm font-bold text-zinc-800 hover:text-pink-500 transition-colors"
+                >
+                  hridoyislamhimel@gmail.com
+                </a>
+              </div>
+
+              <div className="flex gap-4 items-center">
+                {[
+                  { Icon: Youtube, href: "https://www.youtube.com/" },
+                  { Icon: Instagram, href: "https://www.instagram.com/" },
+                  { Icon: Linkedin, href: "https://www.linkedin.com/" },
+                ].map(({ Icon, href }, idx) => (
+                  <a
+                    key={idx}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full border border-zinc-200 hover:border-zinc-950 flex items-center justify-center text-zinc-500 hover:text-zinc-950 transition-colors"
+                  >
+                    <Icon size={16} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
