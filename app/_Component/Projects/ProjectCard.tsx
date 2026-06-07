@@ -1,0 +1,84 @@
+"use client";
+
+import React from "react";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+interface Project {
+  _id: string;
+  title: string;
+  images: {
+    url: string;
+  }[];
+  tags: string[];
+  badge?: {
+    text: string;
+    color: string;
+  } | null;
+}
+
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+}
+
+export default function ProjectCard({ project, index }: ProjectCardProps) {
+  return (
+    <div
+      className="group w-full"
+    >
+      <Link href={`/projects/${project._id}`}>
+        <div className="relative primary-rounded overflow-hidden transition-all duration-300 border primary-border cursor-pointer">
+          {/* Image / Preview Area */}
+          <div className="relative h-[380px] w-full overflow-hidden">
+            <Image
+              src={project.images[0]?.url || ""}
+              alt={project.title}
+              fill
+              className="object-cover group-hover:scale-110 duration-300 transition-transform"
+            />
+
+            {/* Hover Overlay */}
+            <div className="absolute inset-0   opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+              <div className="primary-color text-white px-6 py-3 rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                View Details <ArrowUpRight size={18} />
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Area */}
+          <div className="p-5 text-white">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold">{project.title}</h3>
+              {project.badge && (
+                <span
+                  className="text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider"
+                  style={{ backgroundColor: project.badge.color }}
+                >
+                  {project.badge.text}
+                </span>
+              )}
+            </div>
+
+            <div className="flex items-end flex-wrap gap-2">
+              {project.tags.slice(0, 3).map((tag, idx) => (
+                <span
+                  key={idx}
+                  className="text-[11px] font-semibold px-3 py-1.5 rounded primary-color text-white"
+                >
+                  {tag}
+                </span>
+              ))}
+              {project.tags.length > 3 && (
+                <span className="text-[11px] text-gray-400">
+                  +{project.tags.length - 3} more
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+}

@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card-bg: #111111;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --text-muted: #a1a1aa;
+  --outline-opacity: 0.5;
+}
+
+@utility text-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-outline-red {
+  -webkit-text-stroke: 2px #232c66;
+  -webkit-text-fill-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-outfit), sans-serif;
+}
+
+@utility primary-color {
+  @apply bg-[#232c66];
+}
+
+@utility primary-color2 {
+  @apply bg-[#FF0055];
+}
+
+@utility primary-color-hover {
+  @apply hover:bg-[#FF0055];
+}
+
+@utility text-hover {
+  @apply hover:primary-text2;
+}
+
+@utility primary-text {
+  @apply text-[#232c66];
+}
+
+@utility primary-text2 {
+  color: #FF0055;
+}
+
+@utility primary-text3 {
+  @apply text-white/85;
+}
+
+@utility primary-text4 {
+  @apply text-white/60;
+}
+
+.ratio {
+  @apply max-w-[1450px] mx-auto px-4 xl:px-0;
+}
+
+@utility primary-border {
+  @apply border-white/30;
+}
+
+@utility primary-rounded {
+  @apply rounded-[10px];
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
