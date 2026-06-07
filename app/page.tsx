@@ -3,7 +3,7 @@ import Navigaton from "./_Component/Navigation/Navigaton";
 import Skill from "./_Component/Skll/Skill";
 import Projects from "./_Component/Projects/Projects";
 import Services from "./_Component/Services/Services";
-import EngineeringMindset from "./_Component/EngineeringMindset/EngineeringMindset";
+
 import Faq from "./_Component/Faq/Faq";
 import Optical from "./_Component/Optical/Optical";
 import AllProjects from "./_Component/Projects/AllProjects";
@@ -25,7 +25,6 @@ export default function Home() {
 
       <div className="ratio flex flex-col w-full  gap-30 my-20 ">
         <Skill />
-        <EngineeringMindset />
         <Experiance />
         <AllProjects />
         <AllDesigns />

@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, MapPin, Briefcase, ArrowUpRight } from "lucide-react";
+import { MapPin, Briefcase, ArrowUpRight, Calendar } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetAllExperience } from "@/app/Global/data/useExperience";
@@ -8,87 +8,101 @@ import { formatRole } from "@/app/Global/utils";
 
 const ExperienceCard = ({ exp, index }: { exp: any; index: number }) => {
   return (
-    <Link href={`/experience/${exp._id}`}>
-      <div
-        className="group flex flex-col xl:flex-row items-center justify-between gap-6 p-6 md:p-8 primary-rounded bg-white/5 border primary-border hover:bg-white/10 w-full mb-6 cursor-pointer"
-      >
-        <div className="flex items-center gap-5 md:gap-6 flex-1 min-w-0 w-full">
-          <div className="w-14 h-14 md:w-16 md:h-16 primary-rounded primary-text4 relative overflow-hidden border primary-border shrink-0">
-            {exp.image?.url && (
-              <Image
-                fill
-                src={exp.image.url}
-                alt={exp.company}
-                className="object-cover"
-              />
-            )}
+    <Link href={`/experience/${exp._id}`} className="block group">
+      <div className="flex flex-col justify-between p-6 sm:p-8 rounded-[28px] bg-white border border-pink-500/30 shadow-[0_8px_30px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 h-full min-h-[280px]">
+        
+        {/* Top Badges */}
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100 border border-zinc-200/40 rounded-full text-zinc-600 text-[10px] font-black uppercase tracking-wider">
+            <Calendar size={12} className="text-zinc-500" />
+            <span>{exp.duration}</span>
           </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="text-lg md:text-xl font-bold text-white transition-colors leading-tight">
-              {formatRole(exp.role)}
-            </h3>
-            <p className="text-sm md:text-base font-medium text-gray-400 mt-1 truncate">
-              {exp.company} <span className="text-xs primary-text2">( {formatRole(exp.jobType)} )</span>
-            </p>
+          <span className="text-[10px] font-black uppercase text-pink-600 bg-pink-50 border border-pink-100/30 px-2.5 py-1 rounded-md">
+            {formatRole(exp.jobType)}
+          </span>
+        </div>
+
+        {/* Middle Info (Company & Role) */}
+        <div className="my-6">
+          <div className="flex items-center gap-4">
+            {exp.image?.url ? (
+              <div className="w-12 h-12 rounded-2xl border border-pink-500/20 relative overflow-hidden bg-white shrink-0 shadow-2xs">
+                <Image
+                  fill
+                  src={exp.image.url}
+                  alt={exp.company}
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ) : (
+              <div className="w-12 h-12 rounded-2xl border border-zinc-200/50 bg-zinc-50 flex items-center justify-center shrink-0">
+                <Briefcase className="text-zinc-400 w-5 h-5" />
+              </div>
+            )}
+            <div>
+              <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest leading-none">
+                {exp.company}
+              </p>
+              <h3 className="text-lg sm:text-xl font-black text-zinc-950 group-hover:text-pink-500 transition-colors leading-tight mt-1">
+                {formatRole(exp.role)}
+              </h3>
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 shrink-0 w-full xl:w-auto justify-between xl:justify-end border-t xl:border-t-0 pt-4 xl:pt-0 primary-border">
-          <div className="flex flex-col items-start xl:items-end gap-1.5">
-            <div className="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 primary-text4 rounded-full border primary-border  text-xs md:text-sm font-bold tracking-wider whitespace-nowrap">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>{exp.duration}</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-gray-500 text-xs md:text-sm font-medium xl:pr-2">
-              <MapPin className="w-3.5 h-3.5" />
-              <span>{exp.location}</span>
-            </div>
-          </div>
-          <div className="shrink-0 w-10 h-10 rounded-full border primary-border flex items-center justify-center">
+        {/* Bottom Details Footer */}
+        <div className="border-t border-zinc-100 pt-4 flex items-center justify-between">
+          <span className="text-xs font-bold text-zinc-400 flex items-center gap-1.5">
+            <MapPin size={13} className="text-zinc-400" />
+            {exp.location}
+          </span>
+          
+          <div className="w-10 h-10 rounded-full border border-zinc-200 group-hover:border-zinc-950 group-hover:bg-zinc-950 flex items-center justify-center transition-all duration-300 group-hover:scale-105">
             <ArrowUpRight
-              size={18}
-              className="text-white"
+              size={16}
+              className="text-zinc-500 group-hover:text-white transition-colors duration-300"
             />
           </div>
         </div>
+
       </div>
     </Link>
   );
 };
 
 const SkeletonCard = () => (
-  <div className="flex flex-col xl:flex-row items-center justify-between gap-6 p-6 md:p-8 primary-rounded bg-white/5 border primary-border animate-pulse w-full">
-    <div className="flex items-center gap-5 md:gap-6 flex-1 min-w-0 w-full">
-      <div className="w-14 h-14 md:w-16 md:h-16 primary-rounded bg-white/10 shrink-0"></div>
-      <div className="flex-1 space-y-3">
-        <div className="h-6 w-3/4 bg-white/10 rounded"></div>
-        <div className="h-4 w-1/2 bg-white/5 rounded"></div>
+  <div className="flex flex-col justify-between p-6 sm:p-8 rounded-[28px] bg-white border border-pink-500/20 animate-pulse min-h-[280px]">
+    <div className="flex items-center justify-between gap-4">
+      <div className="h-7 w-28 bg-zinc-100 rounded-full"></div>
+      <div className="h-7 w-16 bg-zinc-100 rounded-md"></div>
+    </div>
+    <div className="my-6 flex items-center gap-4">
+      <div className="w-12 h-12 rounded-2xl bg-zinc-100 shrink-0"></div>
+      <div className="flex-1 space-y-2">
+        <div className="h-4 w-1/4 bg-zinc-100 rounded"></div>
+        <div className="h-5 w-3/4 bg-zinc-200 rounded"></div>
       </div>
     </div>
-    <div className="flex items-center gap-4 shrink-0 w-full xl:w-auto justify-between xl:justify-end">
-      <div className="flex flex-col items-start xl:items-end gap-2">
-        <div className="h-9 w-32 bg-white/10 rounded-full"></div>
-        <div className="h-4 w-24 bg-white/5 rounded"></div>
-      </div>
-      <div className="w-10 h-10 rounded-full bg-white/10 shrink-0"></div>
+    <div className="border-t border-zinc-100 pt-4 flex items-center justify-between">
+      <div className="h-4 w-24 bg-zinc-100 rounded"></div>
+      <div className="w-10 h-10 rounded-full bg-zinc-100 shrink-0"></div>
     </div>
   </div>
 );
 
 const ExperienceSkeleton = () => (
-  <section className="relative overflow-hidden">
+  <section className="relative w-full py-16 md:py-24">
     <div className="mb-10 space-y-6">
       <div className="flex items-center gap-3">
-        <div className="w-6 h-6 bg-white/10 rounded animate-pulse"></div>
-        <div className="h-4 w-24 bg-white/10 rounded animate-pulse"></div>
+        <div className="w-6 h-6 bg-zinc-200 rounded animate-pulse"></div>
+        <div className="h-4 w-24 bg-zinc-200 rounded animate-pulse"></div>
       </div>
       <div className="space-y-3">
-        <div className="h-12 md:h-16 w-1/2 bg-white/5 rounded-lg animate-pulse"></div>
-        <div className="h-12 md:h-16 w-1/3 bg-white/5 rounded-lg animate-pulse"></div>
+        <div className="h-12 w-1/2 bg-zinc-100 rounded-lg animate-pulse"></div>
+        <div className="h-12 w-1/3 bg-zinc-100 rounded-lg animate-pulse"></div>
       </div>
-      <div className="h-4 w-2/3 bg-white/5 rounded animate-pulse mt-4"></div>
     </div>
-    <div className="grid grid-cols-1 2xl:grid-cols-2 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {[1, 2, 3, 4].map((i) => (
         <SkeletonCard key={i} />
       ))}
@@ -97,8 +111,6 @@ const ExperienceSkeleton = () => (
 );
 
 export default function Experiance() {
-
-
   const { allExperience, isLoading, isError } = useGetAllExperience(4);
 
   const experiences = allExperience?.pages.flatMap((page: any) => page) || [];
@@ -109,45 +121,39 @@ export default function Experiance() {
 
   if (isError) {
     return (
-      <div className="text-center text-gray-400 py-10">
-        Failed to load experiences.
+      <div className="text-center text-zinc-500 py-10 font-medium border border-dashed border-zinc-200 rounded-3xl bg-zinc-50/50">
+        Failed to load professional history. Please try reloading.
       </div>
     );
   }
 
   return (
-    <section className=" relative overflow-hidden">
-      <div className="mb-10">
-        <div
-          className="flex items-center gap-3 mb-4"
-        >
-          <Briefcase className="" size={24} />
-          <span className=" font-bold uppercase tracking-widest text-sm">
-            Experience
+    <section id="experience" className="relative w-full py-16 md:py-24 border-t border-zinc-100/50">
+      <div className="mb-12">
+        <div className="flex items-center gap-3 mb-4 text-zinc-800">
+          <Briefcase className="text-pink-500" size={20} />
+          <span className="font-black uppercase tracking-widest text-xs">
+            Journey
           </span>
         </div>
 
-        <h2
-          className="text-4xl md:text-6xl font-black text-white leading-tight mb-6"
-        >
+        <h2 className="text-4xl md:text-5xl font-black text-zinc-950 leading-tight mb-6">
           Professional <br />
-          <span className="primary-text4italic">Timeline</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-[#232c66] italic font-black">
+            Timeline
+          </span>
         </h2>
 
-        <p
-          className="text-gray-400 max-w-2xl text-lg leading-relaxed"
-        >
-          Tracing the evolution of professional expertise through diverse roles
-          and impactful contributions.
+        <p className="text-zinc-500 max-w-2xl text-sm md:text-base font-medium leading-relaxed">
+          Tracing the evolution of design skills and creative contributions across production studios and client projects.
         </p>
       </div>
 
-      <div className="relative ">
-        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-5">
-          {experiences.map((exp: any, index: number) => (
-            <ExperienceCard key={exp._id} exp={exp} index={index} />
-          ))}
-        </div>
+      {/* 2-Column Responsive Card Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {experiences.map((exp: any, index: number) => (
+          <ExperienceCard key={exp._id} exp={exp} index={index} />
+        ))}
       </div>
     </section>
   );
