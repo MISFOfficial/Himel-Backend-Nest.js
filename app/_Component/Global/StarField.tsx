@@ -2,69 +2,83 @@
 
 import React, { useEffect, useRef, useCallback } from "react";
 
-interface Star {
+interface MotionNode {
   x: number;
   y: number;
   size: number;
-  baseOpacity: number;
-  twinkleSpeed: number;
-  twinkleOffset: number;
+  speedX: number;
+  speedY: number;
+  angle: number;
+  rotSpeed: number;
+  type: "diamond" | "circle" | "cross";
+  color: string;
   depth: number;
 }
 
-interface ShootingStar {
+interface LightOrb {
   x: number;
   y: number;
-  angle: number;
-  speed: number;
-  length: number;
-  opacity: number;
-  active: boolean;
-  cooldown: number;
-  timer: number;
+  radius: number;
+  speedX: number;
+  speedY: number;
+  color: string;
 }
 
 export const StarField = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>(0);
   const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
-  const starsRef = useRef<Star[]>([]);
-  const shootingStarsRef = useRef<ShootingStar[]>([]);
+  const nodesRef = useRef<MotionNode[]>([]);
+  const orbsRef = useRef<LightOrb[]>([]);
   const timeRef = useRef(0);
 
-  const initStars = useCallback((width: number, height: number) => {
-    // Generate 180 static stars
-    const stars: Star[] = [];
-    for (let i = 0; i < 180; i++) {
-      const size = i % 15 === 0 ? 3 : i % 8 === 0 ? 2 : 1;
-      stars.push({
+  const initScene = useCallback((width: number, height: number) => {
+    // Generate motion keyframe nodes (diamonds, circles, crosses)
+    const nodes: MotionNode[] = [];
+    const colors = [
+      "rgba(255, 0, 85, 0.45)",  // Soft primary red/pink
+      "rgba(35, 44, 102, 0.35)",  // Soft primary dark blue
+      "rgba(236, 72, 153, 0.45)", // Soft pink
+      "rgba(168, 85, 247, 0.4)",  // Soft purple
+    ];
+    
+    for (let i = 0; i < 35; i++) {
+      const typeVal = i % 3;
+      const type = typeVal === 0 ? "diamond" : typeVal === 1 ? "circle" : "cross";
+      nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size,
-        baseOpacity: 0.4 + Math.random() * 0.6,
-        twinkleSpeed: 0.5 + Math.random() * 1.5,
-        twinkleOffset: Math.random() * Math.PI * 2,
-        depth: 0.2 + Math.random() * 0.8,
+        size: 8 + Math.random() * 14,
+        speedX: (Math.random() - 0.5) * 25, // Increased speed for visibility
+        speedY: (Math.random() - 0.5) * 25,
+        angle: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.02,
+        type,
+        color: colors[i % colors.length],
+        depth: 0.2 + Math.random() * 0.7,
       });
     }
-    starsRef.current = stars;
+    nodesRef.current = nodes;
 
-    // Generate 3 shooting stars
-    const shooters: ShootingStar[] = [];
-    for (let i = 0; i < 3; i++) {
-      shooters.push({
-        x: -100,
-        y: Math.random() * height * 0.6,
-        angle: (25 + Math.random() * 20) * (Math.PI / 180),
-        speed: 8 + Math.random() * 6,
-        length: 120 + Math.random() * 130,
-        opacity: 0,
-        active: false,
-        cooldown: 5000 + Math.random() * 10000,
-        timer: i * 4000 + Math.random() * 3000,
-      });
-    }
-    shootingStarsRef.current = shooters;
+    // Generate large, visible studio light orbs
+    orbsRef.current = [
+      {
+        x: width * 0.15,
+        y: height * 0.25,
+        radius: 400 + Math.random() * 150,
+        speedX: 25,
+        speedY: 15,
+        color: "rgba(255, 0, 85, 0.08)", // More visible soft red/pink
+      },
+      {
+        x: width * 0.85,
+        y: height * 0.75,
+        radius: 450 + Math.random() * 150,
+        speedX: -20,
+        speedY: 25,
+        color: "rgba(35, 44, 102, 0.07)", // More visible soft indigo/blue
+      },
+    ];
   }, []);
 
   useEffect(() => {
@@ -83,13 +97,12 @@ export const StarField = () => {
       canvas.style.width = `${window.innerWidth}px`;
       canvas.style.height = `${window.innerHeight}px`;
       ctx.scale(dpr, dpr);
-      initStars(window.innerWidth, window.innerHeight);
+      initScene(window.innerWidth, window.innerHeight);
     };
 
     resize();
     window.addEventListener("resize", resize);
 
-    // Mouse parallax
     const handleMouseMove = (e: MouseEvent) => {
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
@@ -109,107 +122,156 @@ export const StarField = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
 
-      // Smooth mouse interpolation
+      // Mouse interpolation for parallax
       const mouse = mouseRef.current;
-      mouse.x += (mouse.targetX - mouse.x) * 0.03;
-      mouse.y += (mouse.targetY - mouse.y) * 0.03;
+      mouse.x += (mouse.targetX - mouse.x) * 0.05;
+      mouse.y += (mouse.targetY - mouse.y) * 0.05;
 
-      // Clear with near-white
-      ctx.fillStyle = "rgba(255, 255, 255, 0.97)";
+      // Clear canvas with clean white
+      ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, w, h);
 
-      // Draw stars
-      const stars = starsRef.current;
-      for (let i = 0; i < stars.length; i++) {
-        const star = stars[i];
-        // Twinkling
-        const twinkle = Math.sin(t * star.twinkleSpeed + star.twinkleOffset);
-        const opacity = star.baseOpacity * (0.5 + 0.5 * twinkle);
+      // 1. Draw Studio Light Orbs (Glows)
+      const orbs = orbsRef.current;
+      for (let i = 0; i < orbs.length; i++) {
+        const o = orbs[i];
+        
+        // Slow movement
+        o.x += o.speedX * dt;
+        o.y += o.speedY * dt;
 
-        // Parallax offset
-        const px = mouse.x * 30 * star.depth;
-        const py = mouse.y * 30 * star.depth;
+        // Boundary bounce
+        if (o.x - o.radius < -150 || o.x + o.radius > w + 150) o.speedX *= -1;
+        if (o.y - o.radius < -150 || o.y + o.radius > h + 150) o.speedY *= -1;
 
-        const sx = star.x + px;
-        const sy = star.y + py;
-
-        // Glow for bigger stars
-        if (star.size >= 2) {
-          const gradient = ctx.createRadialGradient(
-            sx,
-            sy,
-            0,
-            sx,
-            sy,
-            star.size * 4,
-          );
-          gradient.addColorStop(0, `rgba(35, 44, 102, ${opacity * 0.4})`);
-          gradient.addColorStop(1, "rgba(35, 44, 102, 0)");
-          ctx.fillStyle = gradient;
-          ctx.beginPath();
-          ctx.arc(sx, sy, star.size * 4, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        // Star dot
-        ctx.fillStyle = `rgba(35, 44, 102, ${opacity})`;
+        const grad = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.radius);
+        grad.addColorStop(0, o.color);
+        grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+        
+        ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(sx, sy, star.size * 0.5, 0, Math.PI * 2);
+        ctx.arc(o.x, o.y, o.radius, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // Draw shooting stars
-      const shooters = shootingStarsRef.current;
-      for (let i = 0; i < shooters.length; i++) {
-        const s = shooters[i];
+      // 2. Draw Motion Curves (Bézier curves representing animation paths)
+      ctx.lineWidth = 1.5;
+      
+      // Curve 1
+      ctx.strokeStyle = "rgba(35, 44, 102, 0.08)"; // Increased visibility
+      ctx.beginPath();
+      ctx.moveTo(-50, h * 0.4 + Math.sin(t * 0.25) * 60);
+      ctx.bezierCurveTo(
+        w * 0.3,
+        h * 0.15 + Math.cos(t * 0.35) * 80,
+        w * 0.6,
+        h * 0.75 + Math.sin(t * 0.3) * 100,
+        w + 50,
+        h * 0.5 + Math.cos(t * 0.2) * 60
+      );
+      ctx.stroke();
 
-        if (!s.active) {
-          s.timer -= dt * 1000;
-          if (s.timer <= 0) {
-            // Activate
-            s.active = true;
-            s.x = Math.random() * w * 0.5;
-            s.y = Math.random() * h * 0.4;
-            s.opacity = 1;
-            s.angle = (25 + Math.random() * 20) * (Math.PI / 180);
+      // Curve 2
+      ctx.strokeStyle = "rgba(255, 0, 85, 0.06)"; // Increased visibility
+      ctx.beginPath();
+      ctx.moveTo(-50, h * 0.65 + Math.cos(t * 0.2) * 70);
+      ctx.bezierCurveTo(
+        w * 0.4,
+        h * 0.85 + Math.sin(t * 0.25) * 90,
+        w * 0.7,
+        h * 0.25 + Math.cos(t * 0.32) * 80,
+        w + 50,
+        h * 0.45 + Math.sin(t * 0.25) * 70
+      );
+      ctx.stroke();
+
+      // 3. Draw Connecting Lines (Mesh network)
+      const nodes = nodesRef.current;
+      ctx.lineWidth = 0.8;
+      for (let i = 0; i < nodes.length; i++) {
+        const n1 = nodes[i];
+        const px1 = mouse.x * 40 * n1.depth;
+        const py1 = mouse.y * 40 * n1.depth;
+        const sx1 = n1.x + px1;
+        const sy1 = n1.y + py1;
+
+        for (let j = i + 1; j < nodes.length; j++) {
+          const n2 = nodes[j];
+          const px2 = mouse.x * 40 * n2.depth;
+          const py2 = mouse.y * 40 * n2.depth;
+          const sx2 = n2.x + px2;
+          const sy2 = n2.y + py2;
+
+          // Check distance
+          const dx = sx1 - sx2;
+          const dy = sy1 - sy2;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 180) {
+            // Draw connection line
+            const lineOpacity = (1 - dist / 180) * 0.12;
+            ctx.strokeStyle = `rgba(35, 44, 102, ${lineOpacity})`;
+            ctx.beginPath();
+            ctx.moveTo(sx1, sy1);
+            ctx.lineTo(sx2, sy2);
+            ctx.stroke();
           }
-          continue;
+        }
+      }
+
+      // 4. Draw Motion Nodes (Keyframes)
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+
+        // Move nodes
+        n.x += n.speedX * dt;
+        n.y += n.speedY * dt;
+        n.angle += n.rotSpeed;
+
+        // Wrap around boundaries
+        if (n.x < -30) n.x = w + 30;
+        if (n.x > w + 30) n.x = -30;
+        if (n.y < -30) n.y = h + 30;
+        if (n.y > h + 30) n.y = -30;
+
+        // Apply mouse parallax
+        const px = mouse.x * 40 * n.depth;
+        const py = mouse.y * 40 * n.depth;
+        const sx = n.x + px;
+        const sy = n.y + py;
+
+        ctx.save();
+        ctx.translate(sx, sy);
+        ctx.rotate(n.angle);
+        ctx.fillStyle = n.color;
+        ctx.strokeStyle = n.color;
+        ctx.lineWidth = 2;
+
+        if (n.type === "diamond") {
+          // Keyframe diamond shape
+          ctx.beginPath();
+          ctx.moveTo(0, -n.size / 2);
+          ctx.lineTo(n.size / 2, 0);
+          ctx.lineTo(0, n.size / 2);
+          ctx.lineTo(-n.size / 2, 0);
+          ctx.closePath();
+          ctx.fill();
+        } else if (n.type === "circle") {
+          // Playhead circle shape
+          ctx.beginPath();
+          ctx.arc(0, 0, n.size / 3.5, 0, Math.PI * 2);
+          ctx.fill();
+        } else if (n.type === "cross") {
+          // FX cross shape
+          ctx.beginPath();
+          ctx.moveTo(-n.size / 2.5, 0);
+          ctx.lineTo(n.size / 2.5, 0);
+          ctx.moveTo(0, -n.size / 2.5);
+          ctx.lineTo(0, n.size / 2.5);
+          ctx.stroke();
         }
 
-        // Move
-        s.x += Math.cos(s.angle) * s.speed * dt * 60;
-        s.y += Math.sin(s.angle) * s.speed * dt * 60;
-
-        // Tail
-        const tailX = s.x - Math.cos(s.angle) * s.length;
-        const tailY = s.y - Math.sin(s.angle) * s.length;
-
-        const gradient = ctx.createLinearGradient(tailX, tailY, s.x, s.y);
-        gradient.addColorStop(0, "rgba(255, 0, 85, 0)");
-        gradient.addColorStop(0.6, `rgba(255, 0, 85, ${s.opacity * 0.3})`);
-        gradient.addColorStop(1, `rgba(255, 0, 85, ${s.opacity})`);
-
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.moveTo(tailX, tailY);
-        ctx.lineTo(s.x, s.y);
-        ctx.stroke();
-
-        // Head glow
-        const headGlow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, 4);
-        headGlow.addColorStop(0, `rgba(255, 0, 85, ${s.opacity})`);
-        headGlow.addColorStop(1, "rgba(255, 0, 85, 0)");
-        ctx.fillStyle = headGlow;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, 4, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Check if off screen
-        if (s.x > w + 100 || s.y > h + 100) {
-          s.active = false;
-          s.timer = 8000 + Math.random() * 10000;
-        }
+        ctx.restore();
       }
 
       animationRef.current = requestAnimationFrame(draw);
@@ -222,13 +284,13 @@ export const StarField = () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [initStars]);
+  }, [initScene]);
 
   return (
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ background: "#fff" }}
+      style={{ background: "#ffffff" }}
     />
   );
 };
