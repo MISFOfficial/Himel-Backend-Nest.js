@@ -69,8 +69,8 @@ export default function Optical() {
   return (
     <section className="w-full overflow-hidden relative">
       {/* Gradient Fade Edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-linear-to-r from-black to-transparent pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-linear-to-l from-black to-transparent pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-linear-to-r from-white to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-linear-to-l from-white to-transparent pointer-events-none" />
 
       {/* Marquee Container */}
       <Marquee
@@ -86,8 +86,8 @@ export default function Optical() {
               className={`
                                 relative min-w-[280px] md:min-w-[320px] h-[200px] md:h-[240px] 
                                 primary-rounded p-6 flex flex-col justify-between 
-                                border primary-border bg-[#111111] hover:primary-border transition-all group
-                                ${card.highlight ? "bg-linear-to-br from-[#111111] to-[#2d0a16]" : ""}
+                                border primary-border bg-[var(--card-bg)] hover:primary-border transition-all group
+                                ${card.highlight ? "bg-linear-to-br from-[var(--card-bg)] to-pink-50/50" : ""}
                             `}
             >
               {/* Glow Effect */}
@@ -102,7 +102,7 @@ export default function Optical() {
               <div className="relative z-10 w-12 h-12 rounded-full flex items-center justify-center primary-text4  mb-4 group-hover:scale-110 transition-transform">
                 <card.icon
                   size={24}
-                  style={{ color: card.highlight ? "#FF0055" : "white" }}
+                  style={{ color: card.highlight ? "#FF0055" : "var(--foreground)" }}
                 />
               </div>
 

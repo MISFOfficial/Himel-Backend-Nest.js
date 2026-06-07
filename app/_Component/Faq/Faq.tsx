@@ -6,24 +6,24 @@ import { useState } from "react";
 
 const faqData = [
   {
-    question: "What technical expertise do you bring to my project?",
+    question: "What software and tools do you use for animations?",
     answer:
-      "I specialize in building production-ready web applications using Next.js, TypeScript, and modern styling frameworks. My focus is on creating high-performance, and accessible digital experiences that scale with your business needs.",
+      "I primarily use Blender for 3D modeling, texturing, lighting, and animation, and After Effects for post-processing, compositing, visual effects, and 2D motion graphics. I also use Premiere Pro for video editing and color grading.",
   },
   {
-    question: "How do you ensure project scalability and maintainability?",
+    question: "How do you handle project revisions and feedback?",
     answer:
-      "I follow industry best practices, including clean architecture, modular component design, and rigorous testing. By using strongly typed systems like TypeScript and efficient state management, I ensure your codebase remains easy to update and evolve as your product grows.",
+      "I follow a structured workflow: storyboarding/concept development first, followed by rough pre-visualizations (low-res animatics), and finally high-resolution rendering and editing. This allows you to give feedback at key stages before final rendering.",
   },
   {
-    question: "What is your typical development process?",
+    question: "What is your typical turnaround time for an animation?",
     answer:
-      "My process is collaborative and transparent: starting with deep discovery and architecture planning, followed by agile development with regular updates, and concluding with comprehensive testing and seamless deployment to ensure a successful launch.",
+      "A standard 3D product promo or a 30-second motion graphic video typically takes 1 to 2 weeks depending on the complexity of the assets and the detail of the animations.",
   },
   {
-    question: "Do you provide post-launch support and optimization?",
+    question: "Do you help with script writing and storyboarding?",
     answer:
-      "Absolutely. I believe in long-term partnerships. I offer performance monitoring, security updates, and iterative feature development to ensure your application continues to deliver exceptional value post-deployment.",
+      "Yes! I assist with the complete creative process: from scripting and style frame generation to storyboarding and final production, ensuring the visual pacing aligns perfectly with your brand message.",
   },
 ];
 
@@ -37,17 +37,15 @@ export default function Faq() {
   return (
     <section id="faq" className="">
       {/* Header */}
-      <div className="text-center  space-y-4 mb-5">
+      <div className="text-center space-y-4 mb-5">
         <h4 className="primary-text2 font-bold uppercase tracking-widest text-sm">
           Hire Me
         </h4>
-        <h2 className="text-xl md:text-4xl font-black text-white">
+        <h2 className="text-xl md:text-4xl font-black text-zinc-950">
           Why Hire Me?
         </h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">
-          With a deep expertise in modern web architectures and a passion for
-          clean, maintainable code, I help businesses scale through robust and
-          innovative technical solutions.
+        <p className="text-zinc-500 max-w-2xl mx-auto font-medium">
+          With deep expertise in 3D modeling, motion graphics, and video production, I create visually stunning assets that engage audiences and elevate brand messaging.
         </p>
       </div>
 
@@ -62,10 +60,7 @@ export default function Faq() {
               </span>
             </div>
             {/* Floating red bubble with question mark */}
-            <div
-
-              className="absolute top-0 right-0 w-20 h-20 md:w-24 md:h-24 primary-color2 rounded-full flex items-center justify-center "
-            >
+            <div className="absolute top-0 right-0 w-20 h-20 md:w-24 md:h-24 primary-color2 rounded-full flex items-center justify-center">
               <span className="text-white text-4xl font-bold">?</span>
             </div>
           </div>
@@ -76,18 +71,18 @@ export default function Faq() {
           {faqData.map((item, index) => (
             <div
               key={index}
-              className=" cursor-pointer primary-rounded overflow-hidden border primary-border transition-all duration-300 "
+              className="cursor-pointer primary-rounded overflow-hidden border primary-border bg-white hover:bg-zinc-50 transition-all duration-300 shadow-sm"
             >
               <button
                 onClick={() => toggleFaq(index)}
                 className="w-full flex items-center cursor-pointer justify-between p-6 text-left group"
               >
                 <span
-                  className={`text-base md:text-lg font-bold transition-colors ${openIndex === index ? "text-primary-color2" : "text-gray-300 group-hover:text-white"}`}
+                  className={`text-base md:text-lg font-bold transition-colors ${openIndex === index ? "text-primary-color2" : "text-zinc-800 group-hover:text-zinc-950"}`}
                 >
                   {item.question}
                 </span>
-                <div className="text-gray-500 group-hover:text-white transition-colors">
+                <div className="text-zinc-400 group-hover:text-zinc-950 transition-colors">
                   {openIndex === index ? (
                     <Minus size={20} />
                   ) : (
@@ -105,7 +100,7 @@ export default function Faq() {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 pt-0 text-gray-400 leading-relaxed mt-2">
+                    <div className="px-6 pb-6 pt-0 text-zinc-500 leading-relaxed mt-2 font-medium">
                       {item.answer}
                     </div>
                   </motion.div>

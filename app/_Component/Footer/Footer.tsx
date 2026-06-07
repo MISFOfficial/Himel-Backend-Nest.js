@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Github, Linkedin, Youtube, Mail, Heart } from "lucide-react";
+import { Instagram, Linkedin, Youtube, Mail } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -15,36 +15,39 @@ export default function Footer() {
       { name: "Contact", href: "#contact" },
     ],
     services: [
-      { name: "Web Development", href: "#" },
-      { name: "UI/UX Design", href: "#" },
-      { name: "Mobile Apps", href: "#" },
-      { name: "Consulting", href: "#" },
+      { name: "3D Animation", href: "#" },
+      { name: "Motion Graphics", href: "#" },
+      { name: "Video Editing", href: "#" },
+      { name: "Content Creation", href: "#" },
     ],
     social: [
       {
         name: "LinkedIn",
         icon: Linkedin,
-        href: "https://www.linkedin.com/in/msfofficial/",
+        href: "https://www.linkedin.com/",
       },
-      { name: "GitHub", icon: Github, href: "https://github.com/MISFOfficial" },
+      {
+        name: "Instagram",
+        icon: Instagram,
+        href: "https://www.instagram.com/",
+      },
       { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/" },
-      { name: "Email", icon: Mail, href: "mailto:muksitul44@gmail.com" },
+      { name: "Email", icon: Mail, href: "mailto:hridoyislamhimel@gmail.com" },
     ],
   };
 
   return (
-    <footer className="border-t primary-border">
+    <footer className="border-t primary-border bg-white text-zinc-950">
       <div className="ratio py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-black text-white mb-4">
-              Muksitul <span className="primary-text">Islam</span>
+            <h3 className="text-2xl font-black text-zinc-950 mb-4">
+              Hridoy Islam <span className="primary-text">Himel</span>
             </h3>
-            <p className="text-gray-400 mb-6 max-w-md">
-              Full-stack developer and designer crafting beautiful digital
-              experiences. Let's build something amazing together.
+            <p className="text-zinc-500 mb-6 max-w-md font-medium">
+              Professional Motion Graphic Designer and 3D Artist crafting high-impact visual stories. Let's create something amazing together.
             </p>
 
             {/* Social Links */}
@@ -55,12 +58,12 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full primary-text4 hover:bg-[#20255e] flex items-center justify-center transition-all group"
+                  className="w-10 h-10 rounded-full border border-zinc-200 hover:border-zinc-900 flex items-center justify-center transition-all group"
                   aria-label={social.name}
                 >
                   <social.icon
                     size={18}
-                    className="text-gray-400 group-hover:text-white transition-colors"
+                    className="text-zinc-500 group-hover:text-zinc-950 transition-colors"
                   />
                 </a>
               ))}
@@ -69,7 +72,7 @@ export default function Footer() {
 
           {/* Navigation Links */}
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-zinc-950 font-bold mb-4 text-sm uppercase tracking-wider">
               Navigation
             </h4>
             <ul className="space-y-3">
@@ -77,7 +80,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    className="text-zinc-500 hover:text-zinc-950 transition-colors text-sm font-medium"
                   >
                     {link.name}
                   </Link>
@@ -88,7 +91,7 @@ export default function Footer() {
 
           {/* Services Links */}
           <div>
-            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-zinc-950 font-bold mb-4 text-sm uppercase tracking-wider">
               Services
             </h4>
             <ul className="space-y-3">
@@ -96,7 +99,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    className="text-zinc-500 hover:text-zinc-950 transition-colors text-sm font-medium"
                   >
                     {link.name}
                   </Link>
@@ -109,15 +112,9 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t primary-border">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-            <p className="text-gray-500 text-sm">
-              © {currentYear} Muksitul Islam. All rights reserved
+            <p className="text-zinc-400 text-sm font-medium">
+              © {currentYear} Hridoy Islam Himel. All rights reserved
             </p>
-
-            {/* <p className="text-gray-500 text-sm flex items-center gap-2">
-              Made with{" "}
-              <Heart size={14} className="text-red-500 fill-red-500" /> in
-              Bangladesh
-            </p> */}
           </div>
         </div>
       </div>

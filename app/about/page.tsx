@@ -60,9 +60,9 @@ export default function AboutPage() {
         },
         {
             year: "Education",
-            title: "The Engineer's Path",
+            title: "The Creative's Path",
             description:
-                "I fulfilled my dream by graduating with a Bachelor's in Computer Science and Engineering from Daffodil International University. Today, I am a professional Software Engineer, specializing in system architecture, full-stack development, and meticulous testing.",
+                "Completed my Bachelor's from Daffodil International University. Today, I am a professional Motion Graphic Designer & Content Creator, specializing in 3D modeling, dynamic visual effects, and high-engagement content creation.",
             icon: <GraduationCap className="primary-text2" size={24} />,
             image: "/diu.jpg",
         },
@@ -102,7 +102,7 @@ export default function AboutPage() {
                 <Travel />
 
                 <div className="ratio flex flex-col gap-30">
-                    {/* The Jahiin Way - Methodology */}
+                    {/* The Himel Way - Methodology */}
                     <WrokingStyle />
 
                     {/* A Day in the Life - Interactive Timeline */}

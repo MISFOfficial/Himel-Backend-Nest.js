@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import jahin from "@/public/profile.png";
+import himel from "@/public/profile.jpeg";
 import ContactModal from "../../Global/ContactModal";
 
 export default function Services() {
@@ -15,8 +15,8 @@ export default function Services() {
         <div className="hidden lg:flex w-1/2 justify-center items-end relative h-full">
           <div className="relative w-full h-[450px] flex items-end justify-center">
             <Image
-              src={jahin}
-              alt="Jahin"
+              src={himel}
+              alt="Himel"
               width={500}
               height={600}
               placeholder="blur"
@@ -35,13 +35,11 @@ export default function Services() {
         <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left text-white z-10 gap-8">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
             Elevating Brands Through <br className="hidden lg:block" />
-            Technical Excellence & <br className="hidden lg:block" />
-            Strategic Development
+            Stunning Motion Graphics & <br className="hidden lg:block" />
+            Immersive 3D Visuals
           </h2>
           <p className="text-white/90 text-sm md:text-base lg:text-lg font-medium max-w-lg leading-relaxed">
-            I specialize in crafting high-performance, scalable web applications
-            that solve complex problems and drive measurable growth for modern
-            businesses.
+            I specialize in crafting high-end 3D animations, custom motion graphics, and engaging video content using Blender and After Effects to tell powerful stories.
           </p>
 
           <button

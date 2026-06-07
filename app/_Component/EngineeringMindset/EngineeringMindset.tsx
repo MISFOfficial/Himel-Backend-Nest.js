@@ -1,40 +1,40 @@
 "use client";
 
 import React from "react";
-import { Brain, Cpu, Layers, Zap, Code2, Workflow } from "lucide-react";
+import { Brain, Cpu, Layers, Zap, Film, Workflow } from "lucide-react";
 
 const mindsetItems = [
   {
-    title: "Systemic Architecture",
+    title: "Visual Storytelling",
     description:
-      "Viewing applications as living ecosystems, not just components. I architect for seamless data flow and modular resilience.",
+      "Viewing animations as emotional narratives, not just raw keyframes. I design for maximum audience engagement and brand resonance.",
     icon: Workflow,
     color: "from-blue-500/20 to-cyan-500/20",
     size: "md:col-span-2",
     delay: 0.1,
   },
   {
-    title: "Pragmatic Tooling",
+    title: "Precision Modeling",
     description:
-      "Choosing tools based on project-specific trade-offs, not industry hype.",
+      "Crafting detailed 3D models, textures, and environments in Blender to create stunning realism or stylized art.",
     icon: Cpu,
     color: "from-purple-500/20 to-pink-500/20",
     size: "md:col-span-1",
     delay: 0.2,
   },
   {
-    title: "Performance Ethics",
+    title: "Dynamic Pacing",
     description:
-      "Speed is a feature. I advocate for lean bundles and sub-second interactions.",
+      "Timing and easing are everything in motion design. I craft animations with smooth, rhythmic flow and impactful momentum.",
     icon: Zap,
     color: "from-orange-500/20 to-yellow-500/20",
     size: "md:col-span-1",
     delay: 0.3,
   },
   {
-    title: "Maintainability First",
+    title: "Aesthetic Integrity",
     description:
-      "Writing code for the next developer. My work is self-documenting, tested, and built to survive long-term evolution.",
+      "Maintaining consistent color grading, lighting, typography, and framing to deliver premium and unified visuals across all formats.",
     icon: Layers,
     color: "from-green-500/20 to-emerald-500/20",
     size: "md:col-span-2",
@@ -44,37 +44,26 @@ const mindsetItems = [
 
 export default function EngineeringMindset() {
   return (
-    <section id="mindset" className="relative overflow-hidden  ">
+    <section id="mindset" className="relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-color/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative z-10">
         <div className="mb-16">
-          <div
-
-            className="flex items-center gap-3 mb-4"
-          >
+          <div className="flex items-center gap-3 mb-4">
             <Brain className="text-primary-color2" size={24} />
             <span className="text-primary-color2 font-bold uppercase tracking-widest text-sm">
               Philosophy
             </span>
           </div>
 
-          <h2
-
-            className="text-4xl md:text-6xl font-black text-white leading-tight mb-6"
-          >
-            The Engineering <br />
+          <h2 className="text-4xl md:text-6xl font-black text-zinc-950 leading-tight mb-6">
+            The Creative <br />
             <span className="primary-text4italic">Mindset</span>
           </h2>
 
-          <p
-
-            className="text-gray-400 max-w-2xl text-lg leading-relaxed"
-          >
-            Great software isn't just about syntax—it's about mental models and
-            architectural decisions. Here is how I approach complex technical
-            challenges.
+          <p className="text-zinc-500 max-w-2xl text-lg leading-relaxed font-medium">
+            Great visuals aren't just about rendering pixels—they are about creating mental models, fluid pacing, and memorable emotional connections.
           </p>
         </div>
 
@@ -82,57 +71,44 @@ export default function EngineeringMindset() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {mindsetItems.map((item, index) => (
             <div
-
-              className={`${item.size} group relative p-8 primary-rounded   border primary-border backdrop-blur-xl overflow-hidden`}
+              key={index}
+              className={`${item.size} group relative p-8 primary-rounded border primary-border bg-white hover:bg-zinc-50 transition-colors duration-300 overflow-hidden shadow-sm`}
             >
-              {/* Gradient Background */}
-              <div
-                className={`absolute inset-0 bg-linear-to-br opacity-0 transition-opacity duration-500`}
-              />
-
               <div className="relative z-10">
-                <div className="w-12 h-12 primary-rounded primary-text4 flex items-center justify-center mb-6 transition-colors">
+                <div className="w-12 h-12 primary-rounded primary-text flex items-center justify-center mb-6 transition-colors">
                   <item.icon
-                    className="text-white/70 transition-colors"
+                    className="text-primary transition-colors"
                     size={24}
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <h3 className="text-2xl font-bold text-zinc-950 mb-4">
                   {item.title}
                 </h3>
-                <p className="text-gray-400 transition-colors leading-relaxed">
+                <p className="text-zinc-500 transition-colors leading-relaxed font-medium">
                   {item.description}
                 </p>
               </div>
-
-              {/* Decorative element */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 primary-text4 rounded-full blur-2xl transition-all duration-500" />
             </div>
           ))}
 
-          {/* Meta Card: Decision Making */}
-          <div
-
-            className="md:col-span-3 mt-4 p-8 primary-rounded bg-primary-color/10 border primary-border flex flex-col md:flex-row items-center justify-between gap-8 group"
-          >
+          {/* Meta Card: Creative Pragmatism */}
+          <div className="md:col-span-3 mt-4 p-8 primary-rounded bg-primary-color/5 border primary-border flex flex-col md:flex-row items-center justify-between gap-8 group shadow-sm">
             <div className="max-w-xl">
-              <h3 className="text-white text-2xl font-bold mb-2">
-                Architectural Pragmatism
+              <h3 className="text-zinc-950 text-2xl font-bold mb-2">
+                Creative Pragmatism
               </h3>
-              <p className="text-blue-200/60 leading-relaxed">
-                "I don't believe in the 'best' library. I believe in the 'right'
-                one for the current user burden, technical debt threshold, and
-                future scaling requirements."
+              <p className="text-zinc-600 leading-relaxed font-medium">
+                "I don't believe in just creating pretty animations. I believe in crafting deliberate visuals that communicate a clear message, tell a story, and achieve the project's core goals."
               </p>
             </div>
             <div className="flex items-center gap-4">
-              <Code2
-                className="text-primary-color2 opacity-40 group-hover:opacity-100 transition-opacity"
+              <Film
+                className="text-primary-color2 opacity-60 group-hover:opacity-100 transition-opacity"
                 size={48}
               />
-              <div className="h-12 w-px bg-white/10 hidden md:block" />
-              <span className="text-white/40 font-mono text-sm uppercase tracking-widest group-hover:primary-text4 transition-colors underline decoration-primary-color2/30">
-                Trade-off Analysis
+              <div className="h-12 w-px bg-zinc-200 hidden md:block" />
+              <span className="text-zinc-500 font-mono text-sm uppercase tracking-widest group-hover:primary-text2 transition-colors underline decoration-primary-color2/30">
+                Storytelling first
               </span>
             </div>
           </div>

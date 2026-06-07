@@ -34,7 +34,7 @@ const TagRow = ({
           direction={direction}
           speed={speed}
           gradient={true}
-          gradientColor="rgb(0, 0, 0)"
+          gradientColor="rgb(255, 255, 255)"
           autoFill={true}
           className="overflow-hidden py-2"
         >
@@ -62,7 +62,7 @@ const TagRow = ({
         speed={speed}
         pauseOnHover={false}
         gradient={true}
-        gradientColor="rgb(0, 0, 0)" // Use RGB string for more consistent results
+        gradientColor="rgb(255, 255, 255)" // Use RGB string for more consistent results
         autoFill={true}
         className="overflow-hidden py-2"
       >

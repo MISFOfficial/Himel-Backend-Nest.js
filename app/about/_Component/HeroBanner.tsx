@@ -5,10 +5,9 @@ import Link from "next/link";
 import {
   ArrowLeft,
   Zap,
-  Code,
-  Server,
+  Film,
+  Box,
   Compass,
-  Database,
   Layers,
   Cpu,
 } from "lucide-react";
@@ -18,27 +17,27 @@ import { useEffect } from "react";
 
 const techCards = [
   {
-    text: "Next.js",
+    text: "Blender 3D",
     style: { left: "calc(50% + 28%)", top: "calc(50% - 12%)" },
     offset: 40,
   },
   {
-    text: "React",
+    text: "After Effects",
     style: { left: "calc(50% + 35%)", top: "calc(50% + 15%)" },
     offset: -30,
   },
   {
-    text: "Nest",
+    text: "Premiere Pro",
     style: { left: "calc(50% - 22%)", top: "calc(50% + 22%)" },
     offset: 50,
   },
   {
-    text: "MongoDB",
+    text: "3D Animation",
     style: { left: "calc(50% - 18%)", top: "calc(50% - 30%)" },
     offset: -40,
   },
   {
-    text: "Express",
+    text: "Motion Graphics",
     style: { left: "calc(50% + 18%)", top: "calc(50% + 32%)" },
     offset: 25,
   },
@@ -190,9 +189,9 @@ export default function HeroBanner() {
               </span>
             </div>
 
-            <h1 className="text-7xl md:text-[12rem] font-black mb-12 leading-[0.8] tracking-tighter">
+            <h1 className="text-7xl md:text-[10rem] font-black mb-12 leading-[0.8] tracking-tighter">
               <div className="block overflow-hidden">
-                {"MUKSITUL".split("").map((char, i) => (
+                {"HRIDOY".split("").map((char, i) => (
                   <motion.span
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
@@ -209,7 +208,7 @@ export default function HeroBanner() {
                 ))}
               </div>
               <div className="block overflow-hidden">
-                {"ISLAM".split("").map((char, i) => (
+                {"HIMEL".split("").map((char, i) => (
                   <motion.span
                     initial={{ y: "100%" }}
                     animate={{ y: 0 }}
@@ -234,8 +233,8 @@ export default function HeroBanner() {
               className="flex flex-col md:flex-row items-center justify-center gap-6 text-xl md:text-2xl font-bold tracking-widest text-white/40"
             >
               <span className="hidden md:block w-20 h-px bg-linear-to-l from-white/20 to-transparent" />
-              Known as my nick name{" "}
-              <span className="text-white font-black italic">Jahin</span>
+              Known by my nickname{" "}
+              <span className="text-white font-black italic">Himel</span>
               <span className="hidden md:block w-20 h-px bg-linear-to-r from-white/20 to-transparent" />
             </motion.div>
           </motion.div>

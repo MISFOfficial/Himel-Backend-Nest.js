@@ -14,11 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="antialiased bg-black overflow-x-hidden">
+    <html lang="en" className="light">
+      <body className="antialiased overflow-x-hidden">
         <QueryProvider>
           <StarField />
-          <Toaster position="bottom-right" theme="dark" richColors />
+          <Toaster position="bottom-right" theme="light" richColors />
           {/* <VideoResume /> */}
           <main className="relative z-10">{children}</main>
         </QueryProvider>

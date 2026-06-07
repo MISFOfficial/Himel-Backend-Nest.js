@@ -114,8 +114,8 @@ export const StarField = () => {
       mouse.x += (mouse.targetX - mouse.x) * 0.03;
       mouse.y += (mouse.targetY - mouse.y) * 0.03;
 
-      // Clear with near-black
-      ctx.fillStyle = "rgba(0, 0, 0, 0.97)";
+      // Clear with near-white
+      ctx.fillStyle = "rgba(255, 255, 255, 0.97)";
       ctx.fillRect(0, 0, w, h);
 
       // Draw stars
@@ -143,8 +143,8 @@ export const StarField = () => {
             sy,
             star.size * 4,
           );
-          gradient.addColorStop(0, `rgba(255, 255, 255, ${opacity * 0.4})`);
-          gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+          gradient.addColorStop(0, `rgba(35, 44, 102, ${opacity * 0.4})`);
+          gradient.addColorStop(1, "rgba(35, 44, 102, 0)");
           ctx.fillStyle = gradient;
           ctx.beginPath();
           ctx.arc(sx, sy, star.size * 4, 0, Math.PI * 2);
@@ -152,7 +152,7 @@ export const StarField = () => {
         }
 
         // Star dot
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.fillStyle = `rgba(35, 44, 102, ${opacity})`;
         ctx.beginPath();
         ctx.arc(sx, sy, star.size * 0.5, 0, Math.PI * 2);
         ctx.fill();
@@ -185,9 +185,9 @@ export const StarField = () => {
         const tailY = s.y - Math.sin(s.angle) * s.length;
 
         const gradient = ctx.createLinearGradient(tailX, tailY, s.x, s.y);
-        gradient.addColorStop(0, "rgba(255, 255, 255, 0)");
-        gradient.addColorStop(0.6, `rgba(255, 255, 255, ${s.opacity * 0.3})`);
-        gradient.addColorStop(1, `rgba(255, 255, 255, ${s.opacity})`);
+        gradient.addColorStop(0, "rgba(255, 0, 85, 0)");
+        gradient.addColorStop(0.6, `rgba(255, 0, 85, ${s.opacity * 0.3})`);
+        gradient.addColorStop(1, `rgba(255, 0, 85, ${s.opacity})`);
 
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 1.5;
@@ -198,8 +198,8 @@ export const StarField = () => {
 
         // Head glow
         const headGlow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, 4);
-        headGlow.addColorStop(0, `rgba(255, 255, 255, ${s.opacity})`);
-        headGlow.addColorStop(1, "rgba(255, 255, 255, 0)");
+        headGlow.addColorStop(0, `rgba(255, 0, 85, ${s.opacity})`);
+        headGlow.addColorStop(1, "rgba(255, 0, 85, 0)");
         ctx.fillStyle = headGlow;
         ctx.beginPath();
         ctx.arc(s.x, s.y, 4, 0, Math.PI * 2);
@@ -228,7 +228,7 @@ export const StarField = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ background: "#000" }}
+      style={{ background: "#fff" }}
     />
   );
 };
