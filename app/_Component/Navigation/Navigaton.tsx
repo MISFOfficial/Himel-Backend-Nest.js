@@ -121,7 +121,7 @@ export default function Navigaton() {
       <nav
         className={`fixed top-0 py-5 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-white/80 backdrop-blur-xl border-b border-zinc-200/40 shadow-sm"
+            ? "bg-zinc-950/80 backdrop-blur-xl border-b border-white/5 shadow-md"
             : "bg-transparent"
         }`}
       >
@@ -129,7 +129,7 @@ export default function Navigaton() {
           {/* Logo */}
           <button
             onClick={() => handleNavClick("hero")}
-            className="hover:scale-105 transition-transform text-2xl font-black tracking-tighter text-zinc-950 uppercase"
+            className="hover:scale-105 transition-transform text-2xl font-black tracking-tighter text-white uppercase"
           >
             Himel<span className="text-pink-500 font-extrabold">.</span>
           </button>
@@ -137,7 +137,7 @@ export default function Navigaton() {
           {/* Elegant Round Hamburger Button (Visible on both desktop & mobile) */}
           <button
             onClick={toggleMenu}
-            className="w-12 h-12 rounded-full border border-zinc-200 hover:border-zinc-900 bg-white/50 backdrop-blur-md flex items-center justify-center text-zinc-800 hover:text-zinc-950 focus:outline-none transition-all hover:scale-105 shadow-xs cursor-pointer group"
+            className="w-12 h-12 rounded-full border border-white/10 hover:border-white/35 bg-white/[0.03] backdrop-blur-md flex items-center justify-center text-zinc-300 hover:text-white focus:outline-none transition-all hover:scale-105 shadow-sm cursor-pointer group"
             aria-label="Open menu"
           >
             <Menu size={20} className="group-hover:rotate-6 transition-transform" />
@@ -152,22 +152,22 @@ export default function Navigaton() {
           <div
             ref={backdropRef}
             onClick={closeMenu}
-            className="fixed inset-0 bg-zinc-950/40 backdrop-blur-xs opacity-0 transition-opacity"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs opacity-0 transition-opacity"
           />
 
           {/* Sliding Side Drawer */}
           <div
             ref={drawerRef}
-            className="fixed top-0 right-0 bottom-0 w-full sm:w-[450px] bg-white border-l border-zinc-100 shadow-2xl p-8 sm:p-12 flex flex-col justify-between z-50 transform translate-x-full"
+            className="fixed top-0 right-0 bottom-0 w-full sm:w-[450px] bg-zinc-950 border-l border-white/5 shadow-2xl p-8 sm:p-12 flex flex-col justify-between z-50 transform translate-x-full"
           >
             {/* Top Bar of Drawer */}
             <div className="flex items-center justify-between">
-              <span className="text-xl font-black tracking-tighter text-zinc-950 uppercase">
+              <span className="text-xl font-black tracking-tighter text-white uppercase">
                 Himel<span className="text-pink-500">.</span>
               </span>
               <button
                 onClick={closeMenu}
-                className="w-10 h-10 rounded-full border border-zinc-200 hover:border-zinc-900 flex items-center justify-center text-zinc-500 hover:text-zinc-900 transition-all hover:scale-105 cursor-pointer"
+                className="w-10 h-10 rounded-full border border-white/10 hover:border-white/30 flex items-center justify-center text-zinc-400 hover:text-white transition-all hover:scale-105 cursor-pointer"
               >
                 <X size={18} />
               </button>
@@ -182,7 +182,7 @@ export default function Navigaton() {
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.id)}
-                  className="group flex items-center justify-between w-full text-left py-2 font-black text-4xl sm:text-5xl text-zinc-900 hover:text-pink-500 transition-colors uppercase tracking-tight cursor-pointer"
+                  className="group flex items-center justify-between w-full text-left py-2 font-black text-4xl sm:text-5xl text-zinc-100 hover:text-pink-500 transition-colors uppercase tracking-tight cursor-pointer"
                 >
                   <span>{link.name}</span>
                   <ArrowRight
@@ -194,14 +194,14 @@ export default function Navigaton() {
             </div>
 
             {/* Footer inside Drawer (Socials & Contact) */}
-            <div className="border-t border-zinc-100 pt-8 flex flex-col gap-4">
+            <div className="border-t border-white/5 pt-8 flex flex-col gap-4">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">
+                <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
                   Say Hello
                 </p>
                 <a
                   href="mailto:hridoyislamhimel@gmail.com"
-                  className="text-sm font-bold text-zinc-800 hover:text-pink-500 transition-colors"
+                  className="text-sm font-bold text-zinc-350 hover:text-pink-500 transition-colors"
                 >
                   hridoyislamhimel@gmail.com
                 </a>
@@ -218,7 +218,7 @@ export default function Navigaton() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full border border-zinc-200 hover:border-zinc-950 flex items-center justify-center text-zinc-500 hover:text-zinc-950 transition-colors"
+                    className="w-9 h-9 rounded-full border border-white/10 hover:border-white/30 flex items-center justify-center text-zinc-400 hover:text-pink-500 transition-colors"
                   >
                     <Icon size={16} />
                   </a>

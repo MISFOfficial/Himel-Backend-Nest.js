@@ -37,16 +37,16 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t primary-border bg-white text-zinc-950">
+    <footer className="border-t border-white/5 bg-[#060608] text-white">
       <div className="ratio py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-black text-zinc-950 mb-4">
+            <h3 className="text-2xl font-black text-white mb-4">
               Hridoy Islam <span className="primary-text">Himel</span>
             </h3>
-            <p className="text-zinc-500 mb-6 max-w-md font-medium">
+            <p className="text-zinc-400 mb-6 max-w-md font-medium">
               Professional Motion Graphic Designer and 3D Artist crafting high-impact visual stories. Let's create something amazing together.
             </p>
 
@@ -58,12 +58,12 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-zinc-200 hover:border-zinc-900 flex items-center justify-center transition-all group"
+                  className="w-10 h-10 rounded-full border border-white/10 hover:border-white/45 flex items-center justify-center transition-all group"
                   aria-label={social.name}
                 >
                   <social.icon
-                    size={18}
-                    className="text-zinc-500 group-hover:text-zinc-950 transition-colors"
+                     size={18}
+                     className="text-zinc-400 group-hover:text-white transition-colors"
                   />
                 </a>
               ))}
@@ -72,7 +72,7 @@ export default function Footer() {
 
           {/* Navigation Links */}
           <div>
-            <h4 className="text-zinc-950 font-bold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">
               Navigation
             </h4>
             <ul className="space-y-3">
@@ -80,7 +80,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-zinc-500 hover:text-zinc-950 transition-colors text-sm font-medium"
+                    className="text-zinc-400 hover:text-white transition-colors text-sm font-medium"
                   >
                     {link.name}
                   </Link>
@@ -91,7 +91,7 @@ export default function Footer() {
 
           {/* Services Links */}
           <div>
-            <h4 className="text-zinc-950 font-bold mb-4 text-sm uppercase tracking-wider">
+            <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">
               Services
             </h4>
             <ul className="space-y-3">
@@ -99,7 +99,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-zinc-500 hover:text-zinc-950 transition-colors text-sm font-medium"
+                    className="text-zinc-400 hover:text-white transition-colors text-sm font-medium"
                   >
                     {link.name}
                   </Link>
@@ -110,9 +110,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t primary-border">
+        <div className="pt-8 border-t border-white/5">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-            <p className="text-zinc-400 text-sm font-medium">
+            <p className="text-zinc-500 text-sm font-medium">
               © {currentYear} Hridoy Islam Himel. All rights reserved
             </p>
           </div>

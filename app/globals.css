@@ -1,42 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap");
+
 @import "tailwindcss";
 
 @theme {
-  --color-white: #09090b;
-  --color-black: #ffffff;
-  
-  --color-zinc-950: #ffffff;
-  --color-zinc-900: #fafafa;
-  --color-zinc-800: #f4f4f5;
-
-  --color-neutral-950: #ffffff;
-  --color-neutral-900: #fafafa;
-  --color-neutral-800: #f4f4f5;
-  --color-neutral-200: #18181b;
-  
-  --color-gray-950: #ffffff;
-  --color-gray-900: #fafafa;
-  --color-gray-800: #f4f4f5;
-  --color-gray-400: #52525b;
-  --color-gray-300: #3f3f46;
+  --font-outfit: "Outfit", sans-serif;
+  --font-caveat: "Caveat", cursive;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #09090b;
-  --card-bg: #ffffff;
-  --card-border: rgba(9, 9, 11, 0.08);
-  --text-muted: #71717a;
+  --background: #060608;
+  --foreground: #fafafa;
+  --card-bg: #0d0d12;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --text-muted: #a1a1aa;
   --outline-opacity: 0.15;
-}
-
-@utility text-outline {
-  -webkit-text-stroke: 1px rgba(9, 9, 11, 0.15);
-  -webkit-text-fill-color: transparent;
-}
-
-@utility text-outline-red {
-  -webkit-text-stroke: 2px #232c66;
-  -webkit-text-fill-color: transparent;
 }
 
 html {
@@ -50,62 +27,58 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-outfit), sans-serif;
+  overflow-x: hidden;
+}
+
+@utility text-outline-dark {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-outline-glow {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
 }
 
 @utility primary-color {
-  @apply bg-[#232c66];
-}
-
-@utility primary-color2 {
-  @apply bg-[#FF0055];
+  @apply bg-[#ff0055];
 }
 
 @utility primary-color-hover {
-  @apply hover:bg-[#FF0055];
+  @apply hover:bg-[#ff0055]/90;
 }
 
 @utility text-hover {
-  @apply hover:primary-text2;
+  @apply hover:text-[#ff0055];
 }
 
 @utility primary-text {
-  @apply text-[#232c66];
-}
-
-@utility primary-text2 {
-  color: #ff0055;
-}
-
-@utility primary-text3 {
-  @apply text-white/85;
-}
-
-@utility primary-text4 {
-  @apply text-white/60;
+  @apply text-[#ff0055];
 }
 
 .ratio {
-  @apply max-w-[1450px] mx-auto px-4 xl:px-0;
+  @apply max-w-[1450px] mx-auto px-6 xl:px-0;
 }
 
 @utility primary-border {
-  @apply border-white/30;
+  @apply border-white/10;
 }
 
 @utility primary-rounded {
-  @apply rounded-[10px];
+  @apply rounded-[12px];
 }
 
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-
+@keyframes float {
+  0%,
   100% {
-    transform: translateX(100%);
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
   }
 }
 
-.animate-shimmer {
-  animation: shimmer 2s infinite;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
