@@ -3,15 +3,77 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
-  Calendar,
-  User,
-  Briefcase,
   Cpu,
   ExternalLink,
 } from "lucide-react";
 import { projectsData } from "../../_data/projects";
 import Navigaton from "../../_Component/Navigation/Navigaton";
 import Footer from "../../_Component/Footer/Footer";
+
+function getToolIcon(tool: string): React.ReactNode {
+  const normalized = tool.toLowerCase().trim();
+
+  if (normalized.includes("after effects")) {
+    return (
+      <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" strokeWidth="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="#180B2B" stroke="#CF96FD" />
+        <text x="5" y="15" fill="#CF96FD" fontSize="10" fontWeight="bold" fontFamily="monospace">Ae</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("illustrator")) {
+    return (
+      <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" strokeWidth="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="#261300" stroke="#FF9A00" />
+        <text x="6" y="15" fill="#FF9A00" fontSize="10" fontWeight="bold" fontFamily="monospace">Ai</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("photoshop")) {
+    return (
+      <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" strokeWidth="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="#001829" stroke="#31A8FF" />
+        <text x="6" y="15" fill="#31A8FF" fontSize="10" fontWeight="bold" fontFamily="monospace">Ps</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("blender")) {
+    return (
+      <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.5 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-4c0 1.1-.9 2-2 2s-2-.9-2-2 1.5-3.5 4-3.5 0 2.4 0 3.5z" fill="#E87D0D" />
+      </svg>
+    );
+  }
+  if (normalized.includes("cinema 4d")) {
+    return (
+      <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" strokeWidth="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="#000926" stroke="#0055FF" />
+        <text x="4" y="15" fill="#0055FF" fontSize="9" fontWeight="bold" fontFamily="monospace">C4D</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("substance")) {
+    return (
+      <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" strokeWidth="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="4" fill="#1F0002" stroke="#E30613" />
+        <text x="6" y="15" fill="#E30613" fontSize="10" fontWeight="bold" fontFamily="monospace">Pt</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("octane")) {
+    return (
+      <svg className="w-5 h-5 shrink-0 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="8" stroke="currentColor" />
+        <circle cx="12" cy="12" r="3" fill="currentColor" />
+      </svg>
+    );
+  }
+  return (
+    <svg className="w-5 h-5 shrink-0 text-pink-500" viewBox="0 0 24 24" fill="currentColor">
+      <circle cx="12" cy="12" r="6" />
+    </svg>
+  );
+}
 
 interface PageProps {
   params: Promise<{ id: string }> | { id: string };
@@ -83,6 +145,21 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </p>
             </div>
 
+            {/* Production Pipeline Timeline */}
+            <div className="bg-white/[0.01] border border-white/5 rounded-2xl p-8 text-left">
+              <h3 className="text-lg font-black uppercase tracking-wider text-pink-500 mb-6 font-outfit">
+                // PRODUCTION PIPELINE
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
+                {project.workflowSteps.map((step, idx) => (
+                  <div key={idx} className="relative bg-white/[0.01] border border-white/5 p-4 rounded-xl flex flex-col justify-between aspect-square">
+                    <span className="text-[10px] font-mono text-pink-500/60 font-bold block">0{idx + 1}</span>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-350 leading-tight font-semibold">{step}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Challenges & Solutions */}
             <div className="bg-white/[0.01] border border-white/5 rounded-2xl p-8 text-left relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/5 blur-[50px] rounded-full pointer-events-none" />
@@ -97,71 +174,30 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           {/* Sidebar Info Panel */}
           <div className="lg:col-span-4 space-y-6">
-            {/* Meta Specifications Table */}
+            {/* Toolkit Specifications Table */}
             <div className="bg-white/[0.01] border border-white/10 rounded-2xl p-6 text-left space-y-6">
               <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block border-b border-white/5 pb-3">
-                // META SPECIFICATIONS
+                // USED SOFTWARE & TOOLS
               </span>
 
-              {/* Client */}
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-center text-pink-500">
-                  <User size={14} />
-                </div>
-                <div>
-                  <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">
-                    Client
-                  </span>
-                  <span className="text-xs font-bold text-white">
-                    {project.client}
-                  </span>
-                </div>
-              </div>
-
-              {/* Role */}
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-center text-pink-500">
-                  <Briefcase size={14} />
-                </div>
-                <div>
-                  <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">
-                    Role
-                  </span>
-                  <span className="text-xs font-bold text-white">
-                    {project.role}
-                  </span>
-                </div>
-              </div>
-
-              {/* Duration */}
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/[0.02] border border-white/5 flex items-center justify-center text-pink-500">
-                  <Calendar size={14} />
-                </div>
-                <div>
-                  <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">
-                    Duration
-                  </span>
-                  <span className="text-xs font-bold text-white">
-                    {project.duration}
-                  </span>
-                </div>
-              </div>
-
               {/* Toolkit */}
-              <div className="border-t border-white/5 pt-5 space-y-3">
+              <div className="space-y-3">
                 <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-zinc-500 uppercase">
                   <Cpu size={12} className="text-pink-500" />
-                  <span>Toolkit</span>
+                  <span>Production Stack</span>
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-col gap-2">
                   {project.tools.map((tool, idx) => (
-                    <span
+                    <div
                       key={idx}
-                      className="text-[9px] font-mono uppercase tracking-wider bg-white/[0.02] border border-white/5 text-zinc-300 px-2.5 py-1 rounded"
+                      className="text-xs font-mono uppercase tracking-wider bg-white/[0.02] border border-white/5 text-zinc-300 px-4 py-2.5 rounded-xl flex items-center justify-between"
                     >
-                      {tool}
-                    </span>
+                      <div className="flex items-center gap-3">
+                        {getToolIcon(tool)}
+                        <span>{tool}</span>
+                      </div>
+                      <span className="text-[8px] text-pink-500 font-bold tracking-widest">// ACTIVE</span>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -180,6 +216,45 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   </a>
                 </div>
               )}
+            </div>
+
+            {/* Technical Render Specifications */}
+            <div className="bg-white/[0.01] border border-white/10 rounded-2xl p-6 text-left space-y-4">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block border-b border-white/5 pb-3">
+                // TECHNICAL RENDER DATA
+              </span>
+              
+              <div className="space-y-3">
+                {/* Resolution */}
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-zinc-500 font-mono uppercase text-[9px] tracking-wider">Resolution</span>
+                  <span className="font-semibold text-zinc-200">{project.resolution}</span>
+                </div>
+                {/* FPS */}
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-zinc-500 font-mono uppercase text-[9px] tracking-wider">Frame Rate</span>
+                  <span className="font-semibold text-zinc-200">{project.fps}</span>
+                </div>
+                {/* Render Engine */}
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-zinc-500 font-mono uppercase text-[9px] tracking-wider">Engine</span>
+                  <span className="font-semibold text-pink-500">{project.renderEngine}</span>
+                </div>
+                {/* Frame Render Time */}
+                {project.renderTimePerFrame && (
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="text-zinc-500 font-mono uppercase text-[9px] tracking-wider">Avg Render Frame</span>
+                    <span className="font-semibold text-zinc-200">{project.renderTimePerFrame}</span>
+                  </div>
+                )}
+                {/* Polycount */}
+                {project.polygonCount && (
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="text-zinc-500 font-mono uppercase text-[9px] tracking-wider">Poly Count</span>
+                    <span className="font-semibold text-zinc-200">{project.polygonCount}</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

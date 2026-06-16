@@ -25,9 +25,10 @@ export default function Navigaton() {
 
   const navLinks = [
     { name: "Home", id: "hero" },
+    { name: "About", id: "about" },
     { name: "Works", id: "projects" },
-    { name: "Services", id: "services" },
-    { name: "Faq", id: "faq" },
+    { name: "Process", id: "workprocess" },
+    { name: "Viewer", id: "viewer3d" },
     { name: "Contact", id: "contact" },
   ];
 

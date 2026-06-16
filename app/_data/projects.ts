@@ -12,6 +12,13 @@ export interface Project {
   projectUrl?: string;
   videoLink: string; // YouTube embed link
   thumbnail: string;
+  // New Technical Render Details
+  resolution: string;
+  fps: string;
+  renderEngine: string;
+  workflowSteps: string[];
+  polygonCount?: string;
+  renderTimePerFrame?: string;
 }
 
 export const projectsData: Project[] = [
@@ -25,10 +32,16 @@ export const projectsData: Project[] = [
     year: "2026",
     client: "CyberVibe Games",
     role: "Lead 3D & Lighting Artist",
-    tools: ["Blender", "After Effects", "Substance Painter", "Cycles Render"],
+    tools: ["Blender", "After Effects", "Adobe Illustrator", "Substance Painter"],
     projectUrl: "https://behance.net/himel-cyberpunk",
-    videoLink: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Rickroll as high-fidelity placeholder video
+    videoLink: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     thumbnail: "https://images.unsplash.com/photo-1578894381163-e72c17f2d45f?auto=format&fit=crop&w=800&q=80",
+    resolution: "3840 x 2160 (4K UHD)",
+    fps: "24 FPS (Cinematic)",
+    renderEngine: "Cycles X (Path Tracing)",
+    workflowSteps: ["Creative Direction", "3D Modeling", "Volumetric Shading", "Octree Baking", "Color Grading"],
+    polygonCount: "8.4 Million Triangles",
+    renderTimePerFrame: "3.5 Minutes / Frame",
   },
   {
     id: "liquid-gold",
@@ -40,10 +53,16 @@ export const projectsData: Project[] = [
     year: "2025",
     client: "Aura Fragrances",
     role: "CGI & Fluid Dynamics Simulation",
-    tools: ["Cinema 4D", "Octane Render", "Houdini", "DaVinci Resolve"],
+    tools: ["Cinema 4D", "After Effects", "Adobe Illustrator", "Octane Render"],
     projectUrl: "https://vimeo.com/himel-liquid-gold",
     videoLink: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+    resolution: "1920 x 1080 (Full HD)",
+    fps: "30 FPS",
+    renderEngine: "Octane Render v2024",
+    workflowSteps: ["Product Reference Match", "Viscosity Simulation", "High-Refractive Shading", "Composite Grading"],
+    polygonCount: "3.2 Million Triangles",
+    renderTimePerFrame: "1.2 Minutes / Frame",
   },
   {
     id: "mechanical-titan",
@@ -55,9 +74,15 @@ export const projectsData: Project[] = [
     year: "2026",
     client: "NeoMech Studios",
     role: "Lead Compositor & CGI Artist",
-    tools: ["Blender", "Nuke", "After Effects", "DaVinci Resolve"],
+    tools: ["Blender", "After Effects", "Adobe Illustrator", "Adobe Photoshop"],
     projectUrl: "https://github.com/himel-mechanical-titan",
     videoLink: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     thumbnail: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+    resolution: "3840 x 2160 (4K UHD)",
+    fps: "24 FPS (Cinematic)",
+    renderEngine: "Cycles X & Eevee",
+    workflowSteps: ["Matchmoving & Track", "Asset Rigging", "HDR Mapping", "Shadow Catcher Comp", "Color Match"],
+    polygonCount: "12.5 Million Polygons",
+    renderTimePerFrame: "5.8 Minutes / Frame",
   },
 ];

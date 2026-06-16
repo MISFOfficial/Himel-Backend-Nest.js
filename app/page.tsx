@@ -5,6 +5,7 @@ import WorkProcess from "./_Component/WorkProcess/WorkProcess";
 import Clients from "./_Component/Clients/Clients";
 import Viewer3D from "./_Component/3DViewer/3DViewer";
 import Projects from "./_Component/Projects/Projects";
+import About from "./_Component/About/About";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       </div>
       <div className="ratio  min-h-screen flex flex-col  lg:gap-30 pb-10 lg:pb-30">
         <Hero />
+        <About />
         <Clients />
         <WorkProcess />
         <Projects />

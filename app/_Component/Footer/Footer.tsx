@@ -10,15 +10,16 @@ export default function Footer() {
   const footerLinks = {
     navigation: [
       { name: "Home", href: "/" },
-      { name: "Projects", href: "#projects" },
-      { name: "Services", href: "#services" },
-      { name: "Viewer 3D", href: "#viewer3d" },
+      { name: "About", href: "#about" },
+      { name: "Works", href: "#projects" },
+      { name: "Process", href: "#workprocess" },
+      { name: "Viewer", href: "#viewer3d" },
     ],
-    services: [
-      { name: "3D Animation", href: "#services" },
-      { name: "Motion Graphics", href: "#services" },
-      { name: "Fluid Simulation", href: "#services" },
-      { name: "CGI VFX Integration", href: "#services" },
+    toolkit: [
+      { name: "Blender", href: "#" },
+      { name: "After Effects", href: "#" },
+      { name: "Adobe Illustrator", href: "#" },
+      { name: "Cinema 4D", href: "#" },
     ],
     social: [
       {
@@ -93,13 +94,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services Links Column */}
+          {/* Toolkit Links Column */}
           <div className="lg:col-span-2 text-left">
             <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-6">
-              02 // SERVICES
+              02 // TOOLKIT
             </span>
             <ul className="space-y-3">
-              {footerLinks.services.map((link) => (
+              {footerLinks.toolkit.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
