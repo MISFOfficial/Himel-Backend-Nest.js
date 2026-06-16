@@ -1,13 +1,7 @@
 "use client";
 
 import React, { useLayoutEffect, useRef } from "react";
-import {
-  Youtube,
-  Instagram,
-  Linkedin,
-  Mail,
-  Sparkles,
-} from "lucide-react";
+import { Youtube, Instagram, Linkedin, Mail, Sparkles } from "lucide-react";
 import himel from "@/public/profile.jpeg";
 import Image from "next/image";
 import gsap from "gsap";
@@ -31,23 +25,36 @@ export default function Hero() {
       tl.fromTo(
         bgTextRef.current,
         { opacity: 0, scale: 0.9, y: 50 },
-        { opacity: 1, scale: 1, y: 0, duration: 1.5 }
+        { opacity: 1, scale: 1, y: 0, duration: 1.5 },
       );
 
       // Animate profile image
       tl.fromTo(
         imageContainerRef.current,
         { opacity: 0, scale: 0.8, rotate: -3 },
-        { opacity: 1, scale: 1, rotate: 0, duration: 1.4, ease: "back.out(1.2)" },
-        "-=1.0"
+        {
+          opacity: 1,
+          scale: 1,
+          rotate: 0,
+          duration: 1.4,
+          ease: "back.out(1.2)",
+        },
+        "-=1.0",
       );
 
       // Animate script text
       tl.fromTo(
         scriptTextRef.current,
         { opacity: 0, scale: 0.5, y: 20, rotate: -20 },
-        { opacity: 1, scale: 1, y: 0, rotate: -12, duration: 1.0, ease: "back.out(1.5)" },
-        "-=0.6"
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          rotate: -12,
+          duration: 1.0,
+          ease: "back.out(1.5)",
+        },
+        "-=0.6",
       );
 
       // Animate footer elements
@@ -55,7 +62,7 @@ export default function Hero() {
         [footerLeftRef.current, footerRightRef.current],
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, stagger: 0.1, duration: 0.8 },
-        "-=0.6"
+        "-=0.6",
       );
     }, containerRef);
 
@@ -74,13 +81,15 @@ export default function Hero() {
 
       {/* Main Content Area */}
       <div className="relative flex items-center justify-center w-full max-w-[1200px] aspect-[16/9] px-4">
-        
         {/* Giant Background Typography */}
         <div
           ref={bgTextRef}
           className="absolute inset-0 flex items-center justify-center select-none pointer-events-none z-0"
         >
-          <h1 className="text-[15vw] sm:text-[13vw] font-black uppercase tracking-tight text-white/[0.02] text-outline-dark leading-none">
+          <h1 
+            className="text-[15vw] sm:text-[13vw] font-black uppercase tracking-tight text-white/[0.05] leading-none"
+            style={{ WebkitTextStroke: "1.5px rgba(255, 255, 255, 0.12)" }}
+          >
             GRAPHIC
           </h1>
         </div>
@@ -118,16 +127,24 @@ export default function Hero() {
 
       {/* Bottom Footer Section inside Hero */}
       <div className="w-full max-w-[1200px] mt-12 px-6 flex flex-col sm:flex-row items-center justify-between gap-6 z-20">
-        
         {/* Social Icons (Left) */}
-        <div
-          ref={footerLeftRef}
-          className="flex items-center gap-6"
-        >
+        <div ref={footerLeftRef} className="flex items-center gap-6">
           {[
-            { Icon: Youtube, href: "https://www.youtube.com/", color: "hover:text-red-500" },
-            { Icon: Instagram, href: "https://www.instagram.com/", color: "hover:text-pink-500" },
-            { Icon: Linkedin, href: "https://www.linkedin.com/", color: "hover:text-blue-500" },
+            {
+              Icon: Youtube,
+              href: "https://www.youtube.com/",
+              color: "hover:text-red-500",
+            },
+            {
+              Icon: Instagram,
+              href: "https://www.instagram.com/",
+              color: "hover:text-pink-500",
+            },
+            {
+              Icon: Linkedin,
+              href: "https://www.linkedin.com/",
+              color: "hover:text-blue-500",
+            },
           ].map(({ Icon, href, color }, idx) => (
             <Link
               key={idx}
@@ -150,7 +167,6 @@ export default function Hero() {
             hridoyislamhimel@gmail.com
           </a>
         </div>
-
       </div>
     </section>
   );
