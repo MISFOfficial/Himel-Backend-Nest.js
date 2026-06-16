@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import gsap from "gsap";
-import ContactModal from "../Global/ContactModal";
+import ContactModal from "../../Global/ContactModal";
 
 export default function Navigaton() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
