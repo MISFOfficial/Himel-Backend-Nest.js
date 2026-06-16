@@ -113,7 +113,7 @@ export default function Clients() {
   return (
     <section
       id="clients"
-      className="relative  bg-bg-site overflow-hidden border-t border-white/5"
+      className="relative pt-20 bg-bg-site overflow-hidden border-t border-white/5"
     >
       <div className=" relative z-10">
         {/* Title block */}

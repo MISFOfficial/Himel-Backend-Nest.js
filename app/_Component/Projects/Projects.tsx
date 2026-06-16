@@ -9,7 +9,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative  bg-bg-site overflow-hidden border-t border-white/5"
+      className="relative  pt-20 bg-bg-site overflow-hidden border-t border-white/5"
     >
       {/* Decorative text */}
       <div className="absolute top-10 right-10 select-none pointer-events-none opacity-[0.01] text-[150px] font-black text-white uppercase tracking-tighter whitespace-nowrap">

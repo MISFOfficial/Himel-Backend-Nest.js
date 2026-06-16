@@ -1,7 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Calendar, User, Briefcase, Cpu, ExternalLink } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  User,
+  Briefcase,
+  Cpu,
+  ExternalLink,
+} from "lucide-react";
 import { projectsData } from "../../_data/projects";
 import Navigaton from "../../_Component/Navigation/Navigaton";
 import Footer from "../../_Component/Footer/Footer";
@@ -25,7 +32,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <Navigaton />
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 py-12 lg:py-20 w-full">
+      <div className="ratio py-12 lg:py-20 w-full">
         {/* Back Link */}
         <Link
           href="/#projects"
@@ -47,10 +54,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
         {/* Main Details Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
           {/* Main Column (Video Player, Description, Challenges) */}
           <div className="lg:col-span-8 space-y-12">
-            
             {/* YouTube Video Embed */}
             <div className="relative w-full aspect-video bg-black/40 border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
               {/* Viewport Camera Corners */}
@@ -88,12 +93,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 {project.challenges}
               </p>
             </div>
-
           </div>
 
           {/* Sidebar Info Panel */}
           <div className="lg:col-span-4 space-y-6">
-            
             {/* Meta Specifications Table */}
             <div className="bg-white/[0.01] border border-white/10 rounded-2xl p-6 text-left space-y-6">
               <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block border-b border-white/5 pb-3">
@@ -106,8 +109,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   <User size={14} />
                 </div>
                 <div>
-                  <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">Client</span>
-                  <span className="text-xs font-bold text-white">{project.client}</span>
+                  <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">
+                    Client
+                  </span>
+                  <span className="text-xs font-bold text-white">
+                    {project.client}
+                  </span>
                 </div>
               </div>
 
@@ -117,8 +124,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   <Briefcase size={14} />
                 </div>
                 <div>
-                  <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">Role</span>
-                  <span className="text-xs font-bold text-white">{project.role}</span>
+                  <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">
+                    Role
+                  </span>
+                  <span className="text-xs font-bold text-white">
+                    {project.role}
+                  </span>
                 </div>
               </div>
 
@@ -128,8 +139,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   <Calendar size={14} />
                 </div>
                 <div>
-                  <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">Duration</span>
-                  <span className="text-xs font-bold text-white">{project.duration}</span>
+                  <span className="text-[9px] font-mono tracking-widest text-zinc-500 uppercase block">
+                    Duration
+                  </span>
+                  <span className="text-xs font-bold text-white">
+                    {project.duration}
+                  </span>
                 </div>
               </div>
 
@@ -166,9 +181,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </div>
               )}
             </div>
-
           </div>
-
         </div>
       </div>
 

@@ -59,7 +59,7 @@ export default function Viewer3D() {
   return (
     <section
       id="viewer3d"
-      className="relative  bg-bg-site overflow-hidden border-t border-white/5"
+      className="relative pt-20  bg-bg-site overflow-hidden border-t border-white/5"
     >
       {/* Background outline brand text decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.01] text-[180px] font-black text-white uppercase tracking-tighter whitespace-nowrap">

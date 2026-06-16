@@ -12,7 +12,7 @@ export default function Home() {
       <div className="sticky top-0 w-full z-40">
         <Navigaton />
       </div>
-      <div className="ratio  min-h-screen flex flex-col  lg:gap-30 ">
+      <div className="ratio  min-h-screen flex flex-col  lg:gap-30 pb-10 lg:pb-30">
         <Hero />
         <Clients />
         <WorkProcess />
