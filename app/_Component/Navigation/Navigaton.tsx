@@ -5,7 +5,6 @@ import {
   Youtube,
   Instagram,
   Linkedin,
-  Mail,
   Menu,
   X,
   ArrowRight,
@@ -120,7 +119,7 @@ export default function Navigaton() {
 
   return (
     <>
-      {/* Minimalist Top Header (Logo + Hamburger only) */}
+      {/* Original Full-width Fixed Header */}
       <nav
         className={`fixed top-0 py-5 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
@@ -132,12 +131,12 @@ export default function Navigaton() {
           {/* Logo */}
           <button
             onClick={() => handleNavClick("hero")}
-            className="hover:scale-105 transition-transform text-2xl font-black tracking-tighter text-white uppercase"
+            className="hover:scale-105 transition-transform text-2xl font-black tracking-tighter text-white uppercase cursor-pointer"
           >
             Himel<span className="text-pink-500 font-extrabold">.</span>
           </button>
 
-          {/* Elegant Round Hamburger Button (Visible on both desktop & mobile) */}
+          {/* Elegant Round Hamburger Button */}
           <button
             onClick={toggleMenu}
             className="w-12 h-12 rounded-full border border-white/10 hover:border-white/35 bg-white/[0.03] backdrop-blur-md flex items-center justify-center text-zinc-300 hover:text-white focus:outline-none transition-all hover:scale-105 shadow-sm cursor-pointer group"
@@ -151,7 +150,7 @@ export default function Navigaton() {
         </div>
       </nav>
 
-      {/* Side Sliding Drawer (Slider Menu) - Universal */}
+      {/* Side Sliding Drawer */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-50">
           {/* Backdrop Overlay */}
@@ -199,9 +198,35 @@ export default function Navigaton() {
               ))}
             </div>
 
-            {/* Footer inside Drawer (Socials & Contact) */}
-            <div className="border-t border-white/5 pt-8 flex flex-col gap-4">
+            {/* Role & Availability (Informative Section applied on top of design) */}
+            <div className="border-t border-white/5 pt-6 flex flex-col gap-3 text-left">
               <div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
+                  Creative Specialty
+                </p>
+                <p className="text-sm font-bold text-zinc-300">
+                  Motion Graphics & 3D Artist
+                </p>
+              </div>
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
+                  Status
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-xs font-bold text-zinc-350">
+                    Available for projects
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer inside Drawer (Socials & Contact) */}
+            <div className="border-t border-white/5 pt-6 flex flex-col gap-4">
+              <div className="text-left">
                 <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
                   Say Hello
                 </p>
@@ -224,7 +249,7 @@ export default function Navigaton() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full border border-white/10 hover:border-white/30 flex items-center justify-center text-zinc-400 hover:text-pink-500 transition-colors"
+                    className="w-9 h-9 rounded-full border border-white/10 hover:border-white/30 flex items-center justify-center text-zinc-400 hover:text-[#ff0055] transition-colors"
                   >
                     <Icon size={16} />
                   </a>
