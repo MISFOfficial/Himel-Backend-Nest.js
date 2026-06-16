@@ -86,6 +86,20 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
+                    onClick={(e) => {
+                      if (link.href.startsWith("#")) {
+                        e.preventDefault();
+                        const id = link.href.replace("#", "");
+                        const element = document.getElementById(id);
+                        if (element) {
+                          element.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                          });
+                          window.history.pushState(null, "", link.href);
+                        }
+                      }
+                    }}
                     className="text-xs font-mono uppercase tracking-wider text-zinc-400 hover:text-white transition-colors"
                   >
                     {link.name}

@@ -39,8 +39,7 @@ export default function Navigaton() {
       closeMenu();
       return;
     }
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
-    const scrollBlock = id === "hero" && isMobile ? "start" : "center";
+    const scrollBlock = "center";
     if (pathname !== "/") {
       router.push(`/#${id}`);
     } else {
@@ -66,8 +65,7 @@ export default function Navigaton() {
       const element = document.getElementById(id);
       if (element) {
         setTimeout(() => {
-          const isMobile = window.innerWidth < 1024;
-          const scrollBlock = id === "hero" && isMobile ? "start" : "center";
+          const scrollBlock = "center";
           element.scrollIntoView({
             behavior: "smooth",
             block: scrollBlock as ScrollLogicalPosition,
@@ -217,69 +215,10 @@ export default function Navigaton() {
                 </button>
               ))}
             </div>
-
-            {/* Role & Availability (Informative Section applied on top of design) */}
-            <div className="border-t border-white/5 pt-6 flex flex-col gap-3 text-left">
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
-                  Creative Specialty
-                </p>
-                <p className="text-sm font-bold text-zinc-300">
-                  Motion Graphics & 3D Artist
-                </p>
-              </div>
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
-                  Status
-                </p>
-                <div className="flex items-center gap-2">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <span className="text-xs font-bold text-zinc-350">
-                    Available for projects
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Footer inside Drawer (Socials & Contact) */}
-            <div className="border-t border-white/5 pt-6 flex flex-col gap-4">
-              <div className="text-left">
-                <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
-                  Say Hello
-                </p>
-                <a
-                  href="mailto:hridoyislamhimel@gmail.com"
-                  className="text-sm font-bold text-zinc-350 hover:text-pink-500 transition-colors"
-                >
-                  hridoyislamhimel@gmail.com
-                </a>
-              </div>
-
-              <div className="flex gap-4 items-center">
-                {[
-                  { Icon: Youtube, href: "https://www.youtube.com/" },
-                  { Icon: Instagram, href: "https://www.instagram.com/" },
-                  { Icon: Linkedin, href: "https://www.linkedin.com/" },
-                ].map(({ Icon, href }, idx) => (
-                  <a
-                    key={idx}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full border border-white/10 hover:border-white/30 flex items-center justify-center text-zinc-400 hover:text-[#ff0055] transition-colors"
-                  >
-                    <Icon size={16} />
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       )}
-   
+
       <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
