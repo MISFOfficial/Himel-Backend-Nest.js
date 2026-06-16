@@ -6,6 +6,7 @@ import Clients from "./_Component/Clients/Clients";
 import Viewer3D from "./_Component/3DViewer/3DViewer";
 import Projects from "./_Component/Projects/Projects";
 import About from "./_Component/About/About";
+import Testimonials from "./_Component/Testimonials/Testimonials";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <WorkProcess />
         <Projects />
         <Viewer3D />
+        <Testimonials />
       </div>
       <Footer />
     </main>
