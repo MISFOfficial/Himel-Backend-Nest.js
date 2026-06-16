@@ -10,7 +10,12 @@ export default function WorkProcess() {
       phase: "Pre-Production",
       title: "CREATIVE DIRECTION",
       desc: "Defining the core concept, style frames, color boards, and storyboards to map the visual narrative before firing up the engines.",
-      tasks: ["Creative Briefing", "Style Frames", "Storyboarding", "Art Direction"],
+      tasks: [
+        "Creative Briefing",
+        "Style Frames",
+        "Storyboarding",
+        "Art Direction",
+      ],
       Icon: Compass,
     },
     {
@@ -18,7 +23,12 @@ export default function WorkProcess() {
       phase: "Assets Creation",
       title: "3D MODELING & SHADING",
       desc: "Creating high-fidelity 3D assets, textures, rigging, and shader development inside Blender and Cinema 4D for organic realism.",
-      tasks: ["3D Modeling", "Texture Shading", "Character Rigging", "Lighting Setup"],
+      tasks: [
+        "3D Modeling",
+        "Texture Shading",
+        "Character Rigging",
+        "Lighting Setup",
+      ],
       Icon: Box,
     },
     {
@@ -26,7 +36,12 @@ export default function WorkProcess() {
       phase: "Animation",
       title: "MOTION & SIMULATION",
       desc: "Bringing models to life through keyframing, camera choreography, rigging, and complex physics/particle simulations.",
-      tasks: ["Keyframe Motion", "Physics Simulation", "Camera Pathing", "Render Optimizing"],
+      tasks: [
+        "Keyframe Motion",
+        "Physics Simulation",
+        "Camera Pathing",
+        "Render Optimizing",
+      ],
       Icon: Sparkles,
     },
     {
@@ -40,13 +55,16 @@ export default function WorkProcess() {
   ];
 
   return (
-    <section id="services" className="relative py-24 bg-bg-site overflow-hidden">
+    <section
+      id="services"
+      className="relative py-24 bg-bg-site overflow-hidden"
+    >
       {/* Background outline brand text decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.01] text-[180px] font-black text-white uppercase tracking-tighter whitespace-nowrap">
         WORK FLOW //
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className=" relative z-10">
         {/* Title block */}
         <div className="text-left mb-16 relative">
           <span className="font-caveat text-pink-500 text-3xl block mb-2 lowercase">
