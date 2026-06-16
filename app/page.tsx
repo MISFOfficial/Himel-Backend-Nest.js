@@ -7,6 +7,7 @@ import Viewer3D from "./_Component/3DViewer/3DViewer";
 import Projects from "./_Component/Projects/Projects";
 import About from "./_Component/About/About";
 import Testimonials from "./_Component/Testimonials/Testimonials";
+import Faq from "./_Component/Faq/Faq";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <Projects />
         <Viewer3D />
         <Testimonials />
+        <Faq />
       </div>
       <Footer />
     </main>

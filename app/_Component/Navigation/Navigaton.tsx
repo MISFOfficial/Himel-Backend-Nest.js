@@ -29,6 +29,7 @@ export default function Navigaton() {
     { name: "Works", id: "projects" },
     { name: "Process", id: "workprocess" },
     { name: "Viewer", id: "viewer3d" },
+    { name: "Faq", id: "faq" },
     { name: "Contact", id: "contact" },
   ];
 

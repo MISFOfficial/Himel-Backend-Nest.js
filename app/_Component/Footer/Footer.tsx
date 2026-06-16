@@ -14,6 +14,7 @@ export default function Footer() {
       { name: "Works", href: "#projects" },
       { name: "Process", href: "#workprocess" },
       { name: "Viewer", href: "#viewer3d" },
+      { name: "Faq", href: "#faq" },
     ],
     toolkit: [
       { name: "Blender", href: "#" },
