@@ -11,10 +11,12 @@ import {
 } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import gsap from "gsap";
+import ContactModal from "../Global/ContactModal";
 
 export default function Navigaton() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -30,6 +32,11 @@ export default function Navigaton() {
   ];
 
   const handleNavClick = (id: string) => {
+    if (id === "contact") {
+      setIsContactModalOpen(true);
+      closeMenu();
+      return;
+    }
     const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
     const scrollBlock = id === "hero" && isMobile ? "start" : "center";
     if (pathname !== "/") {
@@ -136,17 +143,28 @@ export default function Navigaton() {
             Himel<span className="text-pink-500 font-extrabold">.</span>
           </button>
 
-          {/* Elegant Round Hamburger Button */}
-          <button
-            onClick={toggleMenu}
-            className="w-12 h-12 rounded-full border border-white/10 hover:border-white/35 bg-white/[0.03] backdrop-blur-md flex items-center justify-center text-zinc-300 hover:text-white focus:outline-none transition-all hover:scale-105 shadow-sm cursor-pointer group"
-            aria-label="Open menu"
-          >
-            <Menu
-              size={20}
-              className="group-hover:rotate-6 transition-transform"
-            />
-          </button>
+          {/* Right Actions (Contact + Hamburger) */}
+          <div className="flex items-center gap-4">
+            {/* Let's Talk Contact Button */}
+            <button
+              onClick={() => handleNavClick("contact")}
+              className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/10 hover:border-[#ff0055] hover:bg-[#ff0055] text-xs font-bold uppercase tracking-wider text-zinc-100 hover:text-white transition-all duration-300 cursor-pointer shadow-sm"
+            >
+              Let's Talk
+            </button>
+
+            {/* Elegant Round Hamburger Button */}
+            <button
+              onClick={toggleMenu}
+              className="w-12 h-12 rounded-full border border-white/10 hover:border-white/35 bg-white/[0.03] backdrop-blur-md flex items-center justify-center text-zinc-300 hover:text-white focus:outline-none transition-all hover:scale-105 shadow-sm cursor-pointer group"
+              aria-label="Open menu"
+            >
+              <Menu
+                size={20}
+                className="group-hover:rotate-6 transition-transform"
+              />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -259,6 +277,11 @@ export default function Navigaton() {
           </div>
         </div>
       )}
+   
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </>
   );
 }
