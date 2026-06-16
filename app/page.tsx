@@ -3,6 +3,8 @@ import Navigaton from "./_Component/Navigation/Navigaton";
 import Footer from "./_Component/Footer/Footer";
 import WorkProcess from "./_Component/WorkProcess/WorkProcess";
 import Clients from "./_Component/Clients/Clients";
+import Viewer3D from "./_Component/3DViewer/3DViewer";
+import Projects from "./_Component/Projects/Projects";
 
 export default function Home() {
   return (
@@ -14,6 +16,8 @@ export default function Home() {
         <Hero />
         <Clients />
         <WorkProcess />
+        <Projects />
+        <Viewer3D />
       </div>
       <Footer />
     </main>

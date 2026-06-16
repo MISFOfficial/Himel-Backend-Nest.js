@@ -55,10 +55,7 @@ export default function WorkProcess() {
   ];
 
   return (
-    <section
-      id="services"
-      className="relative py-24 bg-bg-site overflow-hidden"
-    >
+    <section id="services" className="relative  bg-bg-site overflow-hidden">
       {/* Background outline brand text decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.01] text-[180px] font-black text-white uppercase tracking-tighter whitespace-nowrap">
         WORK FLOW //
