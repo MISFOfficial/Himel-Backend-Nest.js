@@ -116,7 +116,7 @@ export default function Hero() {
           {/* Cursive/Script Overlay Text */}
           <div
             ref={scriptTextRef}
-            className="absolute -bottom-6 sm:-bottom-8 left-1/2 -translate-x-1/2 z-20 select-none bg-[#060608]/90 backdrop-blur-md px-6 py-2 rounded-full border border-white/5 shadow-lg"
+            className="absolute -bottom-6 sm:-bottom-8 left-1/2 -translate-x-1/2 z-20 select-none bg-bg-site/90 backdrop-blur-md px-6 py-2 rounded-full border border-white/5 shadow-lg"
           >
             <span className="font-caveat text-4xl sm:text-6xl text-[#ff0055] whitespace-nowrap">
               3D Designer

@@ -51,7 +51,7 @@ export default function Navigaton() {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-    
+
     // Handle initial hash link scroll
     if (typeof window !== "undefined" && window.location.hash) {
       const id = window.location.hash.replace("#", "");
@@ -60,7 +60,10 @@ export default function Navigaton() {
         setTimeout(() => {
           const isMobile = window.innerWidth < 1024;
           const scrollBlock = id === "hero" && isMobile ? "start" : "center";
-          element.scrollIntoView({ behavior: "smooth", block: scrollBlock as ScrollLogicalPosition });
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: scrollBlock as ScrollLogicalPosition,
+          });
         }, 400);
       }
     }
@@ -94,7 +97,7 @@ export default function Navigaton() {
               duration: 0.4,
               ease: "power3.out",
               delay: 0.15,
-            }
+            },
           );
         }
       }, 50);
@@ -121,8 +124,8 @@ export default function Navigaton() {
       <nav
         className={`fixed top-0 py-5 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-zinc-950/80 backdrop-blur-xl border-b border-white/5 shadow-md"
-            : "bg-transparent"
+            ? "bg-bg-site/80 backdrop-blur-xl border-b border-white/10 shadow-md"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
         <div className="ratio flex items-center justify-between">
@@ -140,7 +143,10 @@ export default function Navigaton() {
             className="w-12 h-12 rounded-full border border-white/10 hover:border-white/35 bg-white/[0.03] backdrop-blur-md flex items-center justify-center text-zinc-300 hover:text-white focus:outline-none transition-all hover:scale-105 shadow-sm cursor-pointer group"
             aria-label="Open menu"
           >
-            <Menu size={20} className="group-hover:rotate-6 transition-transform" />
+            <Menu
+              size={20}
+              className="group-hover:rotate-6 transition-transform"
+            />
           </button>
         </div>
       </nav>
@@ -158,7 +164,7 @@ export default function Navigaton() {
           {/* Sliding Side Drawer */}
           <div
             ref={drawerRef}
-            className="fixed top-0 right-0 bottom-0 w-full sm:w-[450px] bg-zinc-950 border-l border-white/5 shadow-2xl p-8 sm:p-12 flex flex-col justify-between z-50 transform translate-x-full"
+            className="fixed top-0 right-0 bottom-0 w-full sm:w-[450px] bg-bg-site border-l border-white/5 shadow-2xl p-8 sm:p-12 flex flex-col justify-between z-50 transform translate-x-full"
           >
             {/* Top Bar of Drawer */}
             <div className="flex items-center justify-between">

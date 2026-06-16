@@ -5,6 +5,9 @@
 @theme {
   --font-outfit: "Outfit", sans-serif;
   --font-caveat: "Caveat", cursive;
+  
+  --color-bg-site: var(--background);
+  --color-card-site: var(--card-bg);
 }
 
 :root {
