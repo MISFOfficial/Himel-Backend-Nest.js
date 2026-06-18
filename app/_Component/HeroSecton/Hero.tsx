@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useLayoutEffect, useRef } from "react";
-import { Youtube, Instagram, Linkedin, Mail, Sparkles } from "lucide-react";
+import {
+  Youtube,
+  Instagram,
+  Linkedin,
+  Mail,
+  Sparkles,
+  Facebook,
+} from "lucide-react";
 import himel from "@/public/profile.jpeg";
 import Image from "next/image";
 import gsap from "gsap";
@@ -86,11 +93,11 @@ export default function Hero() {
           ref={bgTextRef}
           className="absolute inset-0 flex items-center justify-center select-none pointer-events-none z-0"
         >
-          <h1 
-            className="text-[15vw] sm:text-[13vw] font-black uppercase tracking-tight text-white/[0.05] leading-none"
+          <h1
+            className="text-[15vw] sm:text-[18vw] font-black uppercase tracking-tight text-white/[0.05] leading-none"
             style={{ WebkitTextStroke: "1.5px rgba(255, 255, 255, 0.12)" }}
           >
-            GRAPHIC
+            HIMEL
           </h1>
         </div>
 
@@ -119,7 +126,7 @@ export default function Hero() {
             className="absolute -bottom-6 sm:-bottom-8 left-1/2 -translate-x-1/2 z-20 select-none bg-bg-site/90 backdrop-blur-md px-6 py-2 rounded-full border border-white/5 shadow-lg"
           >
             <span className="font-caveat text-4xl sm:text-6xl text-[#ff0055] whitespace-nowrap">
-              3D Designer
+              3D Modeler & <br className="sm:hidden" /> Motion Designer
             </span>
           </div>
         </div>
@@ -131,18 +138,23 @@ export default function Hero() {
         <div ref={footerLeftRef} className="flex items-center gap-6">
           {[
             {
-              Icon: Youtube,
-              href: "https://www.youtube.com/",
-              color: "hover:text-red-500",
+              Icon: Facebook,
+              href: "https://www.facebook.com/himel33/",
+              color: "hover:text-blue-600",
             },
+            // {
+            //   Icon: Youtube,
+            //   href: "https://www.youtube.com/",
+            //   color: "hover:text-red-500",
+            // },
             {
               Icon: Instagram,
-              href: "https://www.instagram.com/",
+              href: "https://www.instagram.com/h.i.m.e.l.7/",
               color: "hover:text-pink-500",
             },
             {
               Icon: Linkedin,
-              href: "https://www.linkedin.com/",
+              href: "https://www.linkedin.com/in/hridoy-islam-himel-02103120b/",
               color: "hover:text-blue-500",
             },
           ].map(({ Icon, href, color }, idx) => (
@@ -161,11 +173,9 @@ export default function Hero() {
         {/* Email Address (Right) */}
         <div
           ref={footerRightRef}
-          className="text-sm sm:text-base font-medium tracking-wider text-zinc-500 hover:text-white transition-colors duration-300"
+          className="text-sm sm:text-lg font-medium tracking-wider text-zinc-500 hover:text-white transition-colors duration-300"
         >
-          <a href="mailto:hridoyislamhimel@gmail.com">
-            hridoyislamhimel@gmail.com
-          </a>
+          <a href="mailto:rihimel31@gmail.com">rihimel31@gmail.com</a>
         </div>
       </div>
     </section>

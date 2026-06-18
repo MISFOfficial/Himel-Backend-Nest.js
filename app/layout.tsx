@@ -4,6 +4,7 @@ export const dynamic = "force-dynamic";
 import "./globals.css";
 
 import { Toaster } from "sonner";
+import WhatApp from "./_Component/WhatApp/WhatApp";
 
 export default function RootLayout({
   children,
@@ -15,7 +16,9 @@ export default function RootLayout({
       <body className="antialiased overflow-x-hidden">
         {/* <VideoResume /> */}
         <main className="relative z-10">{children}</main>
+        <WhatApp />
       </body>
     </html>
   );
 }
+
