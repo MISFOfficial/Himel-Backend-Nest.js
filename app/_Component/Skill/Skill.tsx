@@ -8,13 +8,11 @@ export default function Skill() {
       name: "Blender",
       description: "Primary DCC for 3D production, shading, and simulation.",
       icon: (
-        <svg
-          viewBox="0 0 24 24"
-          className="w-8 h-8 fill-current text-[#F57C00]"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.29 15.68c-.68.68-1.78.68-2.46 0l-4.1-4.1c-.68-.68-.68-1.78 0-2.46l4.1-4.1c.68-.68 1.78-.68 2.46 0l4.1 4.1c.68.68.68 1.78 0 2.46l-4.1 4.1zM12 9.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z" />
-        </svg>
+        <img
+          src="/blender.png"
+          alt="Blender"
+          className="w-8 h-8 object-contain rounded-lg"
+        />
       ),
       glowColor:
         "group-hover:shadow-[0_0_30px_rgba(245,124,0,0.15)] group-hover:border-orange-500/30",
