@@ -8,6 +8,7 @@ import Projects from "./_Component/Projects/Projects";
 import About from "./_Component/About/About";
 import Testimonials from "./_Component/Testimonials/Testimonials";
 import Faq from "./_Component/Faq/Faq";
+import Skill from "./_Component/Skill/Skill";
 
 export default function Home() {
   return (
@@ -17,10 +18,11 @@ export default function Home() {
       </div>
       <div className="ratio  min-h-screen flex flex-col  lg:gap-30 pb-10 lg:pb-30">
         <Hero />
+        <Skill />
         <About />
+        <Projects />
         <Clients />
         <WorkProcess />
-        <Projects />
         <Viewer3D />
         <Testimonials />
         <Faq />
