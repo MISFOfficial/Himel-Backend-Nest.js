@@ -5,25 +5,42 @@ import { User, ShieldCheck, Zap, Layers } from "lucide-react";
 
 export default function About() {
   const stats = [
-    { value: "03+", label: "Years in 3D Motion" },
-    { value: "50+", label: "Delivered Projects" },
-    { value: "100%", label: "Client Satisfaction" },
+    { value: "02+", label: "My Role" },
+    { value: "45+", label: "Delivered Projects" },
+    { value: "99.9%", label: "Client Satisfaction" },
   ];
 
   const skills = [
-    { name: "3D Modeling & Texturing", level: 92, spec: "Blender / C4D" },
     {
-      name: "Motion Design & Simulation",
+      name: "3D Modeling & Visualization",
+      level: 95,
+      spec: "Blender / CAD Workflow / Rendering",
+    },
+    {
+      name: "Product Design & Development",
       level: 88,
-      spec: "Keyframes / Dynamics",
+      spec: "Containers / Consumer Products / Industrial Design",
     },
-    { name: "Fluid & Volumetrics", level: 85, spec: "FLIP Fluids / VDB" },
     {
-      name: "Matchmoving & Compositing",
-      level: 90,
-      spec: "Nuke / After Effects",
+      name: "Packaging & Mold Engineering",
+      level: 92,
+      spec: "Packaging Design / 3D Mold Design / Manufacturing",
     },
-    { name: "Color Grading & Finish", level: 80, spec: "DaVinci Resolve" },
+    {
+      name: "Motion Graphics & Product Ads",
+      level: 90,
+      spec: "After Effects / Commercial Animation / Product Reveal",
+    },
+    {
+      name: "Simulation & Procedural Design",
+      level: 60,
+      spec: "Geometry Nodes / Fluid / Rigid Body / Particle Systems",
+    },
+    {
+      name: "Texturing & Post Production",
+      level: 90,
+      spec: "Photoshop / Compositing / Color Finishing",
+    },
   ];
 
   return (
@@ -44,21 +61,22 @@ export default function About() {
               about the artist
             </span>
             <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white font-outfit mb-6">
-              DESIGNING DIGITAL <span className="text-pink-500">REALMS</span>
+              DESIGNING PRODUCTS & <br />
+              <span className="text-pink-500">DIGITAL EXPERIENCES</span>
             </h2>
 
             <p className="text-sm text-zinc-400 leading-relaxed font-medium mb-6">
-              Hridoy Islam Himel is a specialized 3D Artist and Motion Graphic
-              Designer. Leveraging advanced simulation tools, physical shading
-              parameters, and composition methods to forge digital environments,
-              commercial product reels, and cinematics.
-            </p>
-
-            <p className="text-sm text-zinc-400 leading-relaxed font-medium mb-8">
-              With deep technical familiarity across modern pipeline engines
-              like Blender, Cinema 4D, After Effects, and Nuke, he delivers
-              seamless transitions from concepts to final high-fidelity render
-              passes.
+              I specialize in product design, industrial packaging, and 3D
+              motion graphics, transforming concepts into production-ready
+              solutions and compelling visual content. My expertise includes
+              designing product containers, packaging, and precision 3D mold
+              models for manufacturing workflows. Alongside engineering-focused
+              design, I create high-quality motion graphics and commercial
+              advertisements that help brands present their products with
+              clarity and impact. From concept development to final
+              visualization, I combine technical accuracy with creative
+              storytelling to deliver designs that are both functional and
+              visually engaging.
             </p>
 
             {/* Quick Stat Highlights */}
@@ -89,7 +107,7 @@ export default function About() {
                 <div className="flex items-center gap-2">
                   <Layers size={14} className="text-pink-500" />
                   <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold">
-                    SYSTEM DIAGNOSTICS
+                    SKILL LIST
                   </span>
                 </div>
                 <span className="text-[8px] font-mono tracking-widest text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded uppercase font-bold">
